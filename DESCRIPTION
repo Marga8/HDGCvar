@@ -1,0 +1,16 @@
+Package: HDGCvar
+Type: Package
+Title: Granger causality testing in High Dimensional Vector Autoregressive Models  
+Version: 0.1.0
+Author: Luca Margaritella <luca.margaritella@gmail.com>
+Maintainer: Luca Margaritella <luca.margaritella@gmail.com>
+Description: HDGCvar allows for testing Granger causality in High Dimensional Vector Autoregressive Models. 
+    The testing procedure is based on the Post Double Selection Lagrange Multiplier test developed in 
+    A. Hecq, L. Margaritella, S.Smeekes, "Granger Causality Testing in High Dimensional VARs: a Post Double Selection Procedure"(2019) and
+    A. Hecq, L. Margaritella, S.Smeekes, "Inference in Non Stationary High Dimensional VARs" (2020).
+        Granger causality can be tested between time series that are stationary, non stationary (unit root), cointegrated, or all the above.
+    Bivariate as well as multivariate (i.e. blocks) causality can be considered and networks can be plotted.
+    A specific part of the package is dedicated to Realized Volatilities with the possibiity of building spillover networks and condition on Realized Correlations.
+License: GPL_3
+Encoding: UTF-8
+LazyData: true

@@ -814,7 +814,8 @@ HDGC_VAR <- function(GCpair, data, p = 1, d = 0, bound = 0.5 * nrow(data),
     stop("No matching variable for GCto found.")
   }
   I <- length(y_index) #number of dep variables
-  y_I <- c(Y[, y_index]) #dependent variable, corresponds to ycont1
+  #y_I <- c(Y[, y_index]) #dependent variable, corresponds to ycont1
+  y_I <- (Y[, y_index]) #dependent variable, corresponds to ycont1
   x_index <- which(colnames(Y) %in% GCfrom) #index of Granger-causing variable
   if (is.null(x_index)) {
     stop("No matching variable for GCfrom found.")

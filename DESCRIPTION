@@ -27,4 +27,7 @@ Imports:
     stats,
     zoo
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

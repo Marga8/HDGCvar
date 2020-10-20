@@ -17,17 +17,17 @@ HDGC_VAR_I0 <- function(GCpair, data, p = 1, bound = 0.5 * nrow(data),
   GCto <- GCpair$GCto #Granger-caused variable
   GCfrom <- GCpair$GCfrom #Granger-causing
   data <- scale(as.matrix(data), scale = FALSE) #scale dataset
-  Mat_corr<-as.matrix(cor(data))
-  upper<-as.vector(Mat_corr[upper.tri(Mat_corr)])
-  amount<-sum(upper >(1-0.001))
+  Mat_corr <- as.matrix(cor(data))
+  upper <- as.vector(Mat_corr[upper.tri(Mat_corr)])
+  amount <- sum(upper >(1-0.001))
   if(any(1-0.001<upper)){
     warning(paste("The used dataset contains",amount, "correlations larger than 0.999, this can cause failure of OLS and poor variable selection.",sep=" "))
   }
   K <- ncol(data) #numb of variables
   X_all <- create_lags(data, p , include.original = FALSE)  #create p lags + d augmentation of all (original K not included) #correspond to lDatafin=xcont
   if((ncol(X_all)+ncol(data))>nrow(data)){
-    warning( paste("You are estimating an HD model in which each equation has p*K=",(ncol(X_all)+ncol(data)), " parameters and ", ncol(data), " observations.
-                   Depending on how large is p, to avoid failure of OLS you might want to increase the bound=0.5*nrow(data)." ))
+    warning( paste("You are estimating an HD model in which each equation has p*K=",(ncol(X_all)+ncol(data)), " parameters and ", nrow(data), " observations.
+                   Depending on how large is p, to avoid failure of OLS you might want to decrease the bound=0.5*nrow(data)." ))
   }
   X <- X_all[, 1:(K * p)] #original K*p lags of regressors , correspond to lDatafin1
   Y <- data[-(1:p), ] #original variables , correspond to OriginalV
@@ -36,7 +36,7 @@ HDGC_VAR_I0 <- function(GCpair, data, p = 1, bound = 0.5 * nrow(data),
     stop("No matching variable for GCto found.")
   }
   I <- length(y_index) #number of dep variables
-  y_I <- (Y[, y_index]) #dependent variable, corresponds to ycont1
+  y_I <- c(Y[, y_index]) #dependent variable, corresponds to ycont1
   x_index <- which(colnames(Y) %in% GCfrom) #index of Granger-causing variable
   if (is.null(x_index)) {
     stop("No matching variable for GCfrom found.")

@@ -11,7 +11,7 @@
 #'@return the active set estimated via lasso using BIC as penalty
 #'@importFrom glmnet glmnet
 #'@importFrom stats coef
-active_set_1 <- function(i,d,p, X_index, y, z, z_a = NULL, bound = 0.5 * NROW(z)) {
+active_set_1 <- function(i, d, p, X_index, y, z, z_a = NULL, bound = 0.5 * NROW(z)) {
   if(is.null(X_index)){
     if (is.null(z_a)) {
       x <- z
@@ -23,10 +23,10 @@ active_set_1 <- function(i,d,p, X_index, y, z, z_a = NULL, bound = 0.5 * NROW(z)
   }
   else {
     if (is.null(z_a)) {
-      x <- z[,-X_index[i]]
+      x <- z[, -X_index[i]]
       w <- rep(1, ncol(x))
     } else {
-      x <- cbind(z[,-X_index[i]], z_a[, seq_len(d) + i - p])
+      x <- cbind(z[, -X_index[i]], z_a[, seq_len(d) + i - p])
       w <- c(rep(1, ncol(z)-1), 0)
     }
   }

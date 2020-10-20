@@ -27,8 +27,8 @@ HDGC_VAR <- function(GCpair, data, p = 1, d = 0, bound = 0.5 * nrow(data),
   K <- ncol(data) #numb of variables
   X_all <- create_lags(data, p + d, include.original = FALSE)  #create p lags + d augmentation of all (original K not included) #correspond to lDatafin=xcont
   if((ncol(X_all)+ncol(data))>nrow(data)){
-    warning( paste("You are estimating an HD model in which each equation has p*K=",(ncol(X_all)+ncol(data)), " parameters and ", ncol(data), " observations.
-                   Depending on how large is p, to avoid failure of OLS you might want to increase the bound=0.5*nrow(data)." ))
+    warning( paste("You are estimating an HD model in which each equation has p*K=",(ncol(X_all)+ncol(data)), " parameters and ", nrow(data), " observations.
+                   Depending on how large is p, to avoid failure of OLS you might want to decrease the bound=0.5*nrow(data)." ))
   }
   X <- as.matrix(X_all[, 1:(K * p)]) #original K*p lags of regressors , correspond to lDatafin1
   Y <- as.matrix(data[-(1:(p + d)), ]) #original variables , correspond to OriginalV, trimmed of the lags NA
@@ -37,13 +37,12 @@ HDGC_VAR <- function(GCpair, data, p = 1, d = 0, bound = 0.5 * nrow(data),
     stop("No matching variable for GCto found.")
   }
   I <- length(y_index) #number of dep variables
-  #y_I <- c(Y[, y_index]) #dependent variable, corresponds to ycont1
-  y_I <- (Y[, y_index])
+  y_I <- c(Y[, y_index])
   x_index <- which(colnames(Y) %in% GCfrom) #index of Granger-causing variable
   if (is.null(x_index)) {
     stop("No matching variable for GCfrom found.")
   }
-  X_index <- c(sapply(x_index, seq, by = K, length.out = p, simplify = "array")) #indeces of p lags of Granger causing
+  X_index <- c(sapply(x_index, seq, by = K, length.out = p, simplify = "array")) #indices of p lags of Granger causing
   ## added
   Y_index<-c(sapply(y_index, seq, by = K, length.out = p, simplify = "array"))
   ## added
@@ -54,7 +53,7 @@ HDGC_VAR <- function(GCpair, data, p = 1, d = 0, bound = 0.5 * nrow(data),
   Z <- X[, -X_index] #all other variables but Granger-causing, corresponds to xcontnogc
 
   ##added
-  Z_index<-match( GCto_names, colnames(Z) ) #indeces of GCto_names after removinf p lags of GCfrom
+  Z_index<-match( GCto_names, colnames(Z) ) #indeces of GCto_names after removing p lags of GCfrom
 
 
   ZX_augm <- NULL
@@ -82,28 +81,26 @@ HDGC_VAR <- function(GCpair, data, p = 1, d = 0, bound = 0.5 * nrow(data),
     lasso_Sx_1 <- parLapply(cl, seq_len(length(X_index)),
                             active_set_1, d=d, p=p, y = X_GC, X_index =X_index, z = X, z_a =NULL , bound = bound) #regress each time eliminating only the corresponding granger causing lag
     stopCluster(cl)
-  }
-  else {
+  } else {
     lasso_Sx_1 <- lapply(seq_len(length(X_index)),
-                         active_set_1, d=d, p=p, y = X_GC, X_index =X_index, z = X, z_a =NULL , bound = bound) #regress each time eliminating only the corresponding granger causing lag
+                         active_set_1, d=d, p=p, y = X_GC, X_index =X_index,
+                         z = X, z_a = NULL , bound = bound)
+    #regress each time eliminating only the corresponding granger causing lag
   }
-  if (p==1){ #when p=1 there's no need to exclude the Granger causing lags as active_set already exclude the single relevant lag
-    lasso_Sx<-as.matrix(lasso_Sx_1[[1]])
-  }
-  if (p>1){
-    lasso_Sx<-sapply(seq_len(length(X_index)), function(i){
+  lasso_Sx <- sapply(seq_len(length(X_index)), function(i){
       as.matrix(lasso_Sx_1[[i]])[-which(names(lasso_Sx_1[[i]]) %in% GCfrom_names),] })
-  }
-  # Regression for y
-  lasso_Sy_1 <- active_set_1(i = 1,d=d, p=p, X_index=NULL , y = y_I, z = Zx, z_a = NULL, bound = bound)
-  lasso_Sy<-as.matrix(lasso_Sy_1[-c(X_index)]) # cut off the elements corresponding to GC lags
-  rownames(lasso_Sy)<-c(1:nrow(lasso_Sy))
+
+    # Regression for y
+  lasso_Sy_1 <- active_set_1(i = 1, d = d, p = p, X_index = NULL , y = y_I,
+                             z = Zx, z_a = NULL, bound = bound)
+  lasso_Sy <- as.matrix(lasso_Sy_1[-c(outer(X_index,1:I,FUN = function(x,y){x + K*p*(y-1)}))]) # cut off the elements corresponding to GC lags
+  rownames(lasso_Sy) <- c(1:nrow(lasso_Sy))
 
   # Collect all active sets
   lasso_S <- cbind((rep(1, I) %x% lasso_Sx) == TRUE, lasso_Sy)
 
   # Force lags of dependent variable inside the union
-  lasso_S[Z_index,]<-c(rep(T,length(X_index)+1)) #in case lasso has kicked out (i.e. put to false) lags of GCto, we should force them in; +1 is for the constant
+  lasso_S[Z_index,] <- c(rep(T, length(X_index) + 1)) #in case lasso has kicked out (i.e. put to false) lags of GCto, we should force them in; +1 is for the constant
 
   # Union of selected variables
   lasso_sel <- apply(lasso_S, 1, any)

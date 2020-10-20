@@ -31,8 +31,8 @@ HDGC_HVAR <- function(GCpair, data, log = TRUE, bound = 0.5 * nrow(data),
   K <- ncol(data) #numb of variables
   X_all <- create_lags_RV(data, include.original = FALSE)  #create 3 lags: daily, weekly, monthly aggregates
   if((ncol(X_all)+ncol(data))>nrow(data)){
-    warning( paste("You are estimating an HD model in which each equation has p*K=",(ncol(X_all)+ncol(data)), " parameters and ", ncol(data), " observations.
-                   Depending on how large is p, to avoid failure of OLS you might want to increase the bound=0.5*nrow(data)." ))
+    warning( paste("You are estimating an HD model in which each equation has p*K=",(ncol(X_all)+ncol(data)), " parameters and ", nrow(data), " observations.
+                   Depending on how large is p, to avoid failure of OLS you might want to decrease the bound=0.5*nrow(data)." ))
   }
   X <- X_all[, 1:(K * p)] #original K*p lags of regressors , correspond to lDatafin1
   Y <- data[-(1:22), ] #original variables cut the same burn in
@@ -41,7 +41,7 @@ HDGC_HVAR <- function(GCpair, data, log = TRUE, bound = 0.5 * nrow(data),
     stop("No matching variable for GCto found.")
   }
   I <- length(y_index) #number of dep variables
-  y_I <- (Y[, y_index]) #dependent variable, corresponds to ycont1
+  y_I <- c(Y[, y_index]) #dependent variable, corresponds to ycont1
   x_index <- which(colnames(Y) %in% GCfrom) #index of Granger-causing variable
   if (is.null(x_index)) {
     stop("No matching variable for GCfrom found.")

@@ -70,7 +70,8 @@ HDGC_VAR_I0 <- function(GCpair, data, p = 1, bound = 0.5 * nrow(data),
   }
 
   # Regression for y
-  lasso_Sy <- active_set_1(i = 1, d=0,p=p, X_index=NULL , y = y_I, z = Z, z_a = NULL, bound = bound)
+  lasso_Sy <- active_set_1(i = 1, d = 0, p = p, X_index = NULL, y = y_I,
+                           z = Zx, z_a = NULL, bound = bound)
 
   # Collect all active sets
   lasso_S <- cbind((rep(1, I) %x% lasso_Sx) == TRUE, lasso_Sy)

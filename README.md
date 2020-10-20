@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+[![CRAN\_Version\_Badge](http://www.r-pkg.org/badges/version/HDGCvar)](https://cran.r-project.org/package=HDGCvar)
+[![CRAN\_Downloads\_Badge](https://cranlogs.r-pkg.org/badges/grand-total/HDGCvar)](https://cran.r-project.org/package=HDGCvar)
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
 `HDGCvar` allows for testing Granger causality in High Dimensional

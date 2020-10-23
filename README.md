@@ -403,8 +403,10 @@ network<-HDGC_VAR_all(dataset, p = selected_lag, d = 2, bound = 0.5 * nrow(datas
                          parallel = TRUE, n_cores = NULL)
 
 
-#Now let us plot the estimated network
-Plot_GC_all(network, Stat_type="FS_cor",alpha=0.01, multip_corr=list(F),directed=T, layout=layout.circle, main="Network",edge.arrow.size=.2,vertex.size=5, vertex.color=c("lightblue"), vertex.frame.color="blue",vertex.label.size=2,vertex.label.color="black",vertex.label.cex=0.6, vertex.label.dist=1, edge.curved=0,cluster=list(F))
+#Now let us plot the estimated network.
+#You can even do clustering of the connected series using the option cluster=list(T,5,"black",0.8,1,0).
+#This uses Newman-Girvan (2002) algorithm based on edge-betweenness.
+Plot_GC_all(network, Stat_type="FS_cor",alpha=0.01, multip_corr=list(F),directed=T, layout=layout.circle, main="Network",edge.arrow.size=.2,vertex.size=5, vertex.color=c("lightblue"), vertex.frame.color="blue",vertex.label.size=2,vertex.label.color="black",vertex.label.cex=0.6, vertex.label.dist=1, edge.curved=0,cluster=list(T,5,"black",0.8,1,0)) 
 ```
 
-<img src="man/figures/README-example-2.png" width="100%" />
+<img src="man/figures/README-example-2.png" width="100%" /><img src="man/figures/README-example-3.png" width="100%" />

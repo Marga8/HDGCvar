@@ -274,31 +274,42 @@ library(igraph)
 #>     union
 
 #First, let us simulate some time series
-#The SimulNS below simulates a (non-sparse) non-stationary VAR(1) with sample size T_ and number of variables g
-simulNS=function(T_,g){
+#The SimulVAR below simulates a (non-sparse) stationary VAR(1) with sample size T_ and number of variables g
+SimulVAR=function(T_,g){
   coef1<-matrix(NA,nrow=g,ncol=g)
   for (i in 1:g) {
     for (j in 1:g) {
       coef1[i,j]<-((-1)^(abs(i-j)))*(0.4^(abs(i-j)+1))
     }
   }
-  diag(coef1)<-0.7
   presample<-1
   T_new<-T_+presample
   eps1<-rnorm(ncol(coef1)*T_new,0,1)
   eps<-matrix(eps1,nrow=ncol(coef1))
   X <- matrix(nrow=ncol(coef1),ncol=T_new)
-  X[,1] <- (eps[,1])
+  X[,1] <- eps[,1]
   for (t in 2:T_new) {
-    X[,t] <- X[,t-1]+(eps[,t])
+    X[,t] <- (coef1)%*%X[,t-1]+eps[,t]
   }
   finseries<- X[,(1+presample):T_new]
   return(t(finseries))
 }
 
-#Let us fix some seed and simulate 20 non-stationary time series with sample size 100 from a VAR(1)
+#You can check the stationarity of the VAR(1) by simply observing:
+g=20
+coef<-matrix(NA,nrow=g,ncol=g)
+  for (i in 1:g) {
+    for (j in 1:g) {
+      coef[i,j]<-((-1)^(abs(i-j)))*(0.4^(abs(i-j)+1))
+    }
+  }
+max(eigen(coef)$values) #<1
+#> [1] 0.9132571
+
+#Let us fix some seed and simulate 20 non-stationary time series with sample size 100 from a VAR(2) by taking the inverse difference of the stationary series simulated
 set.seed(123)
-dataset<-as.matrix(simulNS(100,20))
+dataset_I0<-as.matrix(SimulVAR(100,20))
+dataset<-as.matrix(diffinv(dataset_I0))
 colnames(dataset)<-c(paste(rep("Var",20),1:20))
 
 #Let us plot the time series to get a feeling of what kind of data we are dealing with
@@ -310,67 +321,81 @@ ts.plot(dataset)
 ``` r
 
 #Select the lag-length of the VAR using HDGCvar::lags_upbound_BIC
-selected_lag<-lags_upbound_BIC(dataset,p_max=10) 
-#Note: hooray! the selected lag is p=1 which it is correct given our simulated data! Of course in practice we could not know this.
+selected_lag<-lags_upbound_BIC(dataset,p_max=10)
+print(selected_lag)
+#> [1] 2
+#Note: hooray! the selected lag is p=2 which it is correct given our simulated data! Of course in practice we could not know this.
 
 #Suppose we are interested in testing whether variable name "Var5" Granger-causes variable name "Var1" given all other variables in your dataset.
 interest_variables=list("GCto"="Var 1","GCfrom"="Var 5")
 
-#By quick diagnostics on the series in your dataset from the previous plot we seem to have some time series with unit roots and probably cointegration. 
+#By visual diagnostics on the series in our dataset from the previous plot we definitely have some time series with unit roots and probably cointegration. Actually: we definitely know this as we created the process in such a way that all the variables have a unit root, in practice obviously this would not be the case.
 
-#With HDGCvar you can completely avoid any pre-tests of integration/cointegration of your series. As we do not know whether the maximum order of integration of our time series is one or two, the safe choice is to let d=2 and simply run
+#However, the nice feature of HDGCvar is that you can completely avoid any pre-tests of integration/cointegration of your series. As we do not know whether the maximum order of integration of our time series is one or two, the safe choice is to let d=2 and simply run
 
 HDGC_VAR(GCpair=interest_variables, data=dataset, p = selected_lag, d = 2, bound = 0.5 * nrow(dataset),
                      parallel = T, n_cores = NULL) 
 #> $tests
 #>             Asymp    FS_cor
-#> LM_stat 0.9430489 0.7755906
-#> p_value 0.3314950 0.3811645
+#> LM_stat 2.1901403 0.8547127
+#> p_value 0.3345161 0.4295616
 #> 
 #> $selections
 #>  Var 1 l1  Var 2 l1  Var 3 l1  Var 4 l1  Var 6 l1  Var 7 l1  Var 8 l1  Var 9 l1 
-#>      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE     FALSE 
+#>      TRUE      TRUE      TRUE      TRUE      TRUE     FALSE      TRUE      TRUE 
 #> Var 10 l1 Var 11 l1 Var 12 l1 Var 13 l1 Var 14 l1 Var 15 l1 Var 16 l1 Var 17 l1 
-#>      TRUE      TRUE     FALSE     FALSE     FALSE      TRUE      TRUE     FALSE 
-#> Var 18 l1 Var 19 l1 Var 20 l1 
-#>      TRUE      TRUE     FALSE
+#>     FALSE     FALSE     FALSE      TRUE     FALSE     FALSE      TRUE     FALSE 
+#> Var 18 l1 Var 19 l1 Var 20 l1  Var 1 l2  Var 2 l2  Var 3 l2  Var 4 l2  Var 6 l2 
+#>     FALSE     FALSE      TRUE      TRUE      TRUE     FALSE     FALSE      TRUE 
+#>  Var 7 l2  Var 8 l2  Var 9 l2 Var 10 l2 Var 11 l2 Var 12 l2 Var 13 l2 Var 14 l2 
+#>     FALSE      TRUE     FALSE     FALSE     FALSE     FALSE     FALSE     FALSE 
+#> Var 15 l2 Var 16 l2 Var 17 l2 Var 18 l2 Var 19 l2 Var 20 l2 
+#>      TRUE      TRUE      TRUE     FALSE     FALSE     FALSE
 
 #Now, suppose we are interested in testing multiple Granger causality relations
 mult_interest_variables<-list(list("GCto"="Var 7", "GCfrom"="Var 19"),list("GCto"="Var 4", "GCfrom"="Var 16"))
-HDGC_VAR_multiple(dataset, GCpairs=mult_interest_variables, p=1, d=2, bound = 0.5 * nrow(dataset),
+HDGC_VAR_multiple(dataset, GCpairs=mult_interest_variables, p= selected_lag, d=2, bound = 0.5 * nrow(dataset),
                      parallel = T, n_cores = NULL)
 #> $tests
 #> , , GCtests = Var 19 -> Var 7
 #> 
 #>          type
 #> stat          Asymp    FS_cor
-#>   LM_stat 0.3564270 0.2802923
-#>   p_value 0.5504973 0.5980528
+#>   LM_stat 0.6076704 0.2301010
+#>   p_value 0.7379825 0.7950274
 #> 
 #> , , GCtests = Var 16 -> Var 4
 #> 
 #>          type
-#> stat           Asymp     FS_cor
-#>   LM_stat 0.07479022 0.06018699
-#>   p_value 0.78448580 0.80684497
+#> stat          Asymp    FS_cor
+#>   LM_stat 0.5822482 0.2355135
+#>   p_value 0.7474229 0.7907248
 #> 
 #> 
 #> $selections
 #> $selections$`Var 19 -> Var 7`
 #>  Var 1 l1  Var 2 l1  Var 3 l1  Var 4 l1  Var 5 l1  Var 6 l1  Var 7 l1  Var 8 l1 
-#>      TRUE      TRUE     FALSE      TRUE      TRUE      TRUE      TRUE      TRUE 
+#>     FALSE      TRUE     FALSE      TRUE     FALSE     FALSE      TRUE      TRUE 
 #>  Var 9 l1 Var 10 l1 Var 11 l1 Var 12 l1 Var 13 l1 Var 14 l1 Var 15 l1 Var 16 l1 
-#>      TRUE      TRUE      TRUE      TRUE      TRUE     FALSE     FALSE      TRUE 
-#> Var 17 l1 Var 18 l1 Var 20 l1 
-#>      TRUE      TRUE      TRUE 
+#>     FALSE     FALSE      TRUE      TRUE     FALSE     FALSE      TRUE      TRUE 
+#> Var 17 l1 Var 18 l1 Var 20 l1  Var 1 l2  Var 2 l2  Var 3 l2  Var 4 l2  Var 5 l2 
+#>     FALSE      TRUE      TRUE     FALSE     FALSE     FALSE      TRUE      TRUE 
+#>  Var 6 l2  Var 7 l2  Var 8 l2  Var 9 l2 Var 10 l2 Var 11 l2 Var 12 l2 Var 13 l2 
+#>      TRUE      TRUE     FALSE     FALSE     FALSE     FALSE     FALSE     FALSE 
+#> Var 14 l2 Var 15 l2 Var 16 l2 Var 17 l2 Var 18 l2 Var 20 l2 
+#>     FALSE      TRUE      TRUE     FALSE      TRUE      TRUE 
 #> 
 #> $selections$`Var 16 -> Var 4`
 #>  Var 1 l1  Var 2 l1  Var 3 l1  Var 4 l1  Var 5 l1  Var 6 l1  Var 7 l1  Var 8 l1 
-#>      TRUE     FALSE     FALSE      TRUE      TRUE      TRUE     FALSE      TRUE 
+#>     FALSE      TRUE     FALSE      TRUE      TRUE      TRUE     FALSE      TRUE 
 #>  Var 9 l1 Var 10 l1 Var 11 l1 Var 12 l1 Var 13 l1 Var 14 l1 Var 15 l1 Var 17 l1 
-#>      TRUE      TRUE      TRUE     FALSE      TRUE      TRUE     FALSE      TRUE 
-#> Var 18 l1 Var 19 l1 Var 20 l1 
-#>      TRUE      TRUE      TRUE
+#>     FALSE      TRUE     FALSE     FALSE     FALSE      TRUE      TRUE     FALSE 
+#> Var 18 l1 Var 19 l1 Var 20 l1  Var 1 l2  Var 2 l2  Var 3 l2  Var 4 l2  Var 5 l2 
+#>     FALSE     FALSE     FALSE     FALSE     FALSE     FALSE      TRUE     FALSE 
+#>  Var 6 l2  Var 7 l2  Var 8 l2  Var 9 l2 Var 10 l2 Var 11 l2 Var 12 l2 Var 13 l2 
+#>     FALSE     FALSE     FALSE     FALSE     FALSE      TRUE      TRUE      TRUE 
+#> Var 14 l2 Var 15 l2 Var 17 l2 Var 18 l2 Var 19 l2 Var 20 l2 
+#>     FALSE      TRUE     FALSE     FALSE     FALSE     FALSE
 
 
 #Let us now estimate the full network of causality among the 20 series in dataset

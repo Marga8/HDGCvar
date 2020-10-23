@@ -18,6 +18,9 @@ knitr::opts_chunk$set(
 # HDGCvar
 
 <!-- badges: start -->
+[![CRAN_Version_Badge](http://www.r-pkg.org/badges/version/HDGCvar)](https://cran.r-project.org/package=HDGCvar)
+[![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/grand-total/HDGCvar)](https://cran.r-project.org/package=HDGCvar)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
 `HDGCvar` allows for testing Granger causality in High Dimensional Vector Autoregressive Models (VARs). 
@@ -143,53 +146,64 @@ library(HDGCvar)
 library(igraph)
 
 #First, let us simulate some time series
-#The SimulNS below simulates a (non-sparse) non-stationary VAR(1) with sample size T_ and number of variables g
-simulNS=function(T_,g){
+#The SimulVAR below simulates a (non-sparse) stationary VAR(1) with sample size T_ and number of variables g
+SimulVAR=function(T_,g){
   coef1<-matrix(NA,nrow=g,ncol=g)
   for (i in 1:g) {
     for (j in 1:g) {
       coef1[i,j]<-((-1)^(abs(i-j)))*(0.4^(abs(i-j)+1))
     }
   }
-  diag(coef1)<-0.7
   presample<-1
   T_new<-T_+presample
   eps1<-rnorm(ncol(coef1)*T_new,0,1)
   eps<-matrix(eps1,nrow=ncol(coef1))
   X <- matrix(nrow=ncol(coef1),ncol=T_new)
-  X[,1] <- (eps[,1])
+  X[,1] <- eps[,1]
   for (t in 2:T_new) {
-    X[,t] <- X[,t-1]+(eps[,t])
+    X[,t] <- (coef1)%*%X[,t-1]+eps[,t]
   }
   finseries<- X[,(1+presample):T_new]
   return(t(finseries))
 }
 
-#Let us fix some seed and simulate 20 non-stationary time series with sample size 100 from a VAR(1)
+#You can check the stationarity of the VAR(1) by simply observing:
+g=20
+coef<-matrix(NA,nrow=g,ncol=g)
+  for (i in 1:g) {
+    for (j in 1:g) {
+      coef[i,j]<-((-1)^(abs(i-j)))*(0.4^(abs(i-j)+1))
+    }
+  }
+max(eigen(coef)$values) #<1
+
+#Let us fix some seed and simulate 20 non-stationary time series with sample size 100 from a VAR(2) by taking the inverse difference of the stationary series simulated
 set.seed(123)
-dataset<-as.matrix(simulNS(100,20))
+dataset_I0<-as.matrix(SimulVAR(100,20))
+dataset<-as.matrix(diffinv(dataset_I0))
 colnames(dataset)<-c(paste(rep("Var",20),1:20))
 
 #Let us plot the time series to get a feeling of what kind of data we are dealing with
 ts.plot(dataset)
 
 #Select the lag-length of the VAR using HDGCvar::lags_upbound_BIC
-selected_lag<-lags_upbound_BIC(dataset,p_max=10) 
-#Note: hooray! the selected lag is p=1 which it is correct given our simulated data! Of course in practice we could not know this.
+selected_lag<-lags_upbound_BIC(dataset,p_max=10)
+print(selected_lag)
+#Note: hooray! the selected lag is p=2 which it is correct given our simulated data! Of course in practice we could not know this.
 
 #Suppose we are interested in testing whether variable name "Var5" Granger-causes variable name "Var1" given all other variables in your dataset.
 interest_variables=list("GCto"="Var 1","GCfrom"="Var 5")
 
-#By quick diagnostics on the series in your dataset from the previous plot we seem to have some time series with unit roots and probably cointegration. 
+#By visual diagnostics on the series in our dataset from the previous plot we definitely have some time series with unit roots and probably cointegration. Actually: we definitely know this as we created the process in such a way that all the variables have a unit root, in practice obviously this would not be the case.
 
-#With HDGCvar you can completely avoid any pre-tests of integration/cointegration of your series. As we do not know whether the maximum order of integration of our time series is one or two, the safe choice is to let d=2 and simply run
+#However, the nice feature of HDGCvar is that you can completely avoid any pre-tests of integration/cointegration of your series. As we do not know whether the maximum order of integration of our time series is one or two, the safe choice is to let d=2 and simply run
 
 HDGC_VAR(GCpair=interest_variables, data=dataset, p = selected_lag, d = 2, bound = 0.5 * nrow(dataset),
                      parallel = T, n_cores = NULL) 
 
 #Now, suppose we are interested in testing multiple Granger causality relations
 mult_interest_variables<-list(list("GCto"="Var 7", "GCfrom"="Var 19"),list("GCto"="Var 4", "GCfrom"="Var 16"))
-HDGC_VAR_multiple(dataset, GCpairs=mult_interest_variables, p=1, d=2, bound = 0.5 * nrow(dataset),
+HDGC_VAR_multiple(dataset, GCpairs=mult_interest_variables, p= selected_lag, d=2, bound = 0.5 * nrow(dataset),
                      parallel = T, n_cores = NULL)
 
 

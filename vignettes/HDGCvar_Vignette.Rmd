@@ -141,7 +141,7 @@ If both (value,value) are given, the calculated threshold will find the closest 
 
 Here is a simulated examples which show you how to use some of the features in `HDGCvar`.
 
-```{r example, echo=TRUE, fig.height=6, fig.width=6}
+```{r example, echo=TRUE, fig.height=5, fig.width=5,dpi=130}
 library(HDGCvar)
 library(igraph)
 
@@ -211,8 +211,6 @@ HDGC_VAR_multiple(dataset, GCpairs=mult_interest_variables, p= selected_lag, d=2
 network<-HDGC_VAR_all(dataset, p = selected_lag, d = 2, bound = 0.5 * nrow(dataset), 
                          parallel = TRUE, n_cores = NULL)
 
-
-#Now let us plot the estimated network
 #Now let us plot the estimated network.
 #You can even do clustering of the connected series using the option cluster=list(T,5,"black",0.8,1,0).
 #This uses Newman-Girvan (2002) algorithm based on edge-betweenness.

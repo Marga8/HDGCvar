@@ -1,5 +1,6 @@
 #' @title Lags creation
 #'
+#' @keywords internal
 #' @description Creates a lag matrix of order p. Can include or exclude original series, and trim the NAs in the
 #' start of the sample.
 #' @param y vector or matrix to lag

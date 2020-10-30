@@ -21,6 +21,11 @@ HDGC_VAR <- function(GCpair, data, p = 1, d = 0, bound = 0.5 * nrow(data),
   Mat_corr<-as.matrix(cor(data))
   upper<-as.vector(Mat_corr[upper.tri(Mat_corr)])
   amount<-sum(upper >(1-0.001))
+  if(p<=d){
+    warning("To avoid spurious regression problems in the post-double-selection steps,
+            unless you are certain that your series are maximum I(1), you might want to consider increasing the lag length p to be larger than d")
+  }
+
   if(any(1-0.001<upper)){
     warning(paste("The used dataset contains",amount, "correlations larger than 0.999, this can cause failure of OLS and poor variable selection.",sep=" "))
   }

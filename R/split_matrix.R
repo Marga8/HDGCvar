@@ -1,5 +1,5 @@
 #' @title Split Big Matrix
-#'
+#' @keywords internal
 #' @description Splits a big matrix in sub matrices using Kronecker product
 #' @param M the matrix
 #' @param r the rows of desired cut.

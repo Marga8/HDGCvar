@@ -12,7 +12,7 @@ Description: HDGCvar allows for testing Granger causality in High Dimensional Ve
         Granger causality can be tested between time series that are stationary, non stationary (unit root), cointegrated, or all the above.
     Bivariate as well as multivariate (i.e. blocks) causality can be considered and networks can be plotted.
     A specific part of the package is dedicated to Realized Volatilities with the possibiity of building spillover networks and condition on Realized Correlations.
-License: MIT + file LICENSE
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/Marga8/HDGCvar
@@ -31,3 +31,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)

@@ -10,8 +10,8 @@
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster
 #' @importFrom stats cor
-#' @examples \dontrun{GCpair<-list("GCto"="X1", "GCfrom"="X2")}
-#' \dontrun{HDGC_HVAR(GCpair, data, log=T,parallel = F)}
+#' @examples \dontrun{GCpair<-list("GCto"="Var 1", "GCfrom"="Var 5")}
+#' \dontrun{HDGC_HVAR(GCpair, data=sample_dataset, log=T,parallel = F)}
 HDGC_HVAR <- function(GCpair, data, log = TRUE, bound = 0.5 * nrow(data),
                       parallel = FALSE, n_cores = NULL) {
   p = 3 #impose Three lags (HVAR)

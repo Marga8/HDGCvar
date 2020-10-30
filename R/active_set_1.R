@@ -1,5 +1,6 @@
 #'@title Determine the active set variables via lasso regression.
 #'
+#'@keywords internal
 #'@param i determines which column of y is considered
 #'@param d the decided lag-augmentation of the interest variables
 #'@param p the lag length

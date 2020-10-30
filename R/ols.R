@@ -1,5 +1,6 @@
 #'@title Ordinary Least Squares
 #'
+#'@keywords internal
 #'@description Perform least squares of y on x. Returns a list with the coefficients, t statistics, p values and
 #' residual vector.
 #' @param y vector dependent variable

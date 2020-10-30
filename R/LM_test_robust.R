@@ -1,4 +1,5 @@
 #'@title LM test heteroscedastic robust
+#'@keywords internal
 #'@description Perform the LM test of significance of x for y given z and add the robust asymptotic test statistic.
 #'@param y dependent variable: Granger-caused
 #'@param x Granger causing variable, all its lags

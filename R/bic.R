@@ -1,5 +1,6 @@
 #' @title Lasso Bayesian Information Criterion
 #'
+#' @keywords internal
 #' @description Do BIC on lasso output. Needs degrees of freedom coming from glmnet. Bound on lambda is optional,
 #' imposed as 0.5T by default.
 #' @param y vector of dependent variable

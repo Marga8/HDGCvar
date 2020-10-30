@@ -1,5 +1,6 @@
 #'@title LM test
 #'@description Perform the LM test of significance of x for y given z.
+#'@keywords internal
 #'@param y dependent variable: Granger-caused
 #'@param x Granger causing variable, all its lags
 #'@param z conditioning set of variables

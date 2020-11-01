@@ -10,8 +10,8 @@
 #' @return            LM test statistics, p-values: asymptotic and with finite sample correction and Lasso selections are printed to the console
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster parLapply
-#' @examples \dontrun{GCpairs<-list(list("GCto"="X1", "GCfrom"="X2"),list("GCto"="X2", "GCfrom"="X3"))}
-#' \dontrun{HDGC_VAR_multiple_I0(data, GCpairs, p=1, parallel = T )}
+#' @examples \dontrun{GC=list(list("GCto"="Var 1", "GCfrom"="Var 2"),list("GCto"="Var 2", "GCfrom"="Var 3"))}
+#' \dontrun{HDGC_VAR_multiple_I0(sample_dataset_I0, GC, p=1 )}
 HDGC_VAR_multiple_I0 <- function(data, GCpairs, p = 1, bound = 0.5 * nrow(data),
                                  parallel = FALSE, n_cores = NULL) {
   if (parallel) {

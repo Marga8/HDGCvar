@@ -31,5 +31,5 @@ Wrapper around \code{\link{HDGC_VAR_multiple_I0}} which tests Granger causality 
 one by one. Can therefore be used to construct a network.
 }
 \examples{
-\dontrun{HDGC_VAR_all_I0(data,p=2,parallel=T)}
+\dontrun{HDGC_VAR_all_I0(data=sample_dataset_I0,p=2,parallel=T)}
 }

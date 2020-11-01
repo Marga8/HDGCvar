@@ -9,8 +9,7 @@
 #' @return            LM test statistics and p-values: asymptotic, with finite sample correction and asymptotic with heteroscedasticity correction and Lasso selections are printed to the console
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster parLapply
-#' @examples \dontrun{GCpair<-list("GCto"="X", "GCfrom"="Z")
-#' HDGC_HVAR_RVCOV(GCpair, real_var, real_corr,parallel = T)}
+#' @examples \dontrun{HDGC_HVAR_RVCOV(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), real_var, real_corr)}
 HDGC_HVAR_RVCOV <- function(GCpair, realized_variances, realized_correlations, bound = 0.5 * nrow(realized_variances),
                             parallel = FALSE, n_cores = NULL) {
   p = 3 #impose Three lags (HVAR)

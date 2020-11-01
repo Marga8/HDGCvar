@@ -12,8 +12,8 @@
 #' @param  n_cores    nr of cores to use in parallel computing, default is all but one
 #' @return            Granger causality matrix and Lasso selections are printed to the console
 #' @export
-#' @examples \dontrun{GCto = list(c("V1", "V2")); GCfrom = list(c("V3", "V4", "V5"))}
-#' \dontrun{HDGC_VAR_multiple_pairs_I0(data,GCto,GCfrom,p=2,parallel = F)}
+#' @examples \dontrun{GCto = list(c("Var 1", "Var 2")); GCfrom = list(c("Var 3", "Var 4", "Var 5"))}
+#' \dontrun{HDGC_VAR_multiple_pairs_I0(sample_dataset_I0,GCto,GCfrom,p=2)}
 HDGC_VAR_multiple_pairs_I0 <- function(data, GCpairs = NULL, GCto = NULL, GCfrom = NULL,
                                        p = 1, bound = 0.5 * nrow(data),
                                        parallel = FALSE, n_cores = NULL) {

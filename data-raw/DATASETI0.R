@@ -1,4 +1,4 @@
-## code to prepare `DATASET` dataset goes here
+## code to prepare `DATASETI0` dataset goes here
 SimulVAR=function(T_,g){
   coef1<-matrix(NA,nrow=g,ncol=g)
   for (i in 1:g) {
@@ -20,8 +20,8 @@ SimulVAR=function(T_,g){
 }
 
 set.seed(123)
-dataset_I0<-as.matrix(SimulVAR(200,30))
-sample_dataset_I1<-as.matrix(diffinv(dataset_I0))
-colnames(sample_dataset_I1)<-c(paste(rep("Var",30),1:30))
+sample_dataset_I0<-as.matrix(SimulVAR(200,30))
+colnames(sample_dataset_I0)<-c(paste(rep("Var",30),1:30))
 
-usethis::use_data(sample_dataset_I1, compress = "xz", overwrite = TRUE)
+
+usethis::use_data(sample_dataset_I0, compress = "xz", overwrite = TRUE)

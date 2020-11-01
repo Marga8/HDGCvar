@@ -11,8 +11,7 @@
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster parLapply
 #' @importFrom stats cor
-#' @examples \dontrun{GCpair<-list("GCto"="X1", "GCfrom"="X2")
-#' HDGC_VAR(GCpair, data, p=2,d=2, parallel=T)}
+#' @examples HDGC_VAR(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), data=sample_dataset_I1, p=3, d=2)
 HDGC_VAR <- function(GCpair, data, p = 1, d = 0, bound = 0.5 * nrow(data),
                      parallel = FALSE, n_cores = NULL) {
   GCto <- GCpair$GCto #Granger-caused variable

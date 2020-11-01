@@ -10,7 +10,7 @@
 #'
 #' @return            Granger causality matrix and Lasso selections are printed to the console
 #' @export
-#' @examples \dontrun{HDGC_HVAR_all(data, log=T, parallel = T) }
+#' @examples \dontrun{HDGC_HVAR_all(data=sample_RV, log=TRUE, parallel = TRUE) }
 HDGC_HVAR_all <- function(data, log = TRUE, bound = 0.5 * nrow(data),
                           parallel = FALSE, n_cores = NULL) {
 

@@ -37,5 +37,5 @@ Granger causality matrix and Lasso selections are printed to the console
 Networks of Realized Volatilities conditional on the set of Realized Correlations
 }
 \examples{
-\dontrun{ HDGC_HVAR_RV_RCoV_all(real_var, real_cov, fisher_transf=T, log=T,parallel = T) }
+\dontrun{ HDGC_HVAR_RV_RCoV_all(real_var, real_cov, fisher_transf=T, log=TRUE ,parallel = TRUE) }
 }

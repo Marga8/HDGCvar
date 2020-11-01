@@ -10,7 +10,7 @@
 #' @param  n_cores                   Nr of cores to use in parallel computing, default is all but one
 #' @return   Granger causality matrix and Lasso selections are printed to the console
 #' @export
-#' @examples \dontrun{ HDGC_HVAR_RV_RCoV_all(real_var, real_cov, fisher_transf=T, log=T,parallel = T) }
+#' @examples \dontrun{ HDGC_HVAR_RV_RCoV_all(real_var, real_cov, fisher_transf=T, log=TRUE ,parallel = TRUE) }
 HDGC_HVAR_RV_RCoV_all <- function(realized_variances,realized_covariances, fisher_transf=TRUE, log=TRUE, bound = 0.5 * nrow(realized_variances),
                                   parallel = FALSE, n_cores = NULL) {
 

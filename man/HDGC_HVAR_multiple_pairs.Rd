@@ -42,6 +42,6 @@ the function is the same as \code{\link{HDGC_HVAR_multiple}}. Alternatively, if 
 variables in GCto and GCfrom, these can be given directly. See Example.
 }
 \examples{
-\dontrun{GCto = list(c("V1", "V2")); GCfrom = list(c("V3", "V4", "V5"))}
-\dontrun{HDGC_HVAR_multiple_pairs(data,GCto,GCfrom,p=2,d=2,parallel = F)}
+\dontrun{GCto = list(c("Var 1", "Var 2")); GCfrom = list(c("Var 3", "Var 4", "Var 5"))}
+\dontrun{HDGC_HVAR_multiple_pairs(sample_RV,GCto,GCfrom, log=TRUE)}
 }

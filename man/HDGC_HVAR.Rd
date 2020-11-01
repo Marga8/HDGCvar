@@ -33,6 +33,5 @@ LM test statistics and p-values: asymptotic, with finite sample correction and a
 Test Granger causality in High Dimensional Stationary Heterogeneous VARs
 }
 \examples{
-\dontrun{GCpair<-list("GCto"="Var 1", "GCfrom"="Var 5")}
-\dontrun{HDGC_HVAR(GCpair, data=sample_dataset, log=T,parallel = F)}
+HDGC_HVAR(GCpair=list("GCto"="Var 1", "GCfrom"="Var 5"), data=sample_RV,log=TRUE)
 }

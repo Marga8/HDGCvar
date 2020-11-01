@@ -34,7 +34,7 @@ LM test statistics, p-values: asymptotic and with finite sample correction and L
 This function is a wrapper around \code{\link{HDGC_HVAR}} that allows for multiple combinations to be tested
 }
 \examples{
-\dontrun{GCpairs<-list(list("GCto"="X1", "GCfrom"="X2"),list("GCto"="X2", "GCfrom"="X3"))}
-\dontrun{HDGC_HVAR_multiple(data,GCpairs,log=T,parallel = T)
+\dontrun{GC<-list(list("GCto"="Var 1", "GCfrom"="Var 2"),list("GCto"="Var 2", "GCfrom"="Var 3"))}
+\dontrun{HDGC_HVAR_multiple(sample_RV,GCpairs=GC,log=TRUE)
 }
 }

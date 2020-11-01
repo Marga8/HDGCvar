@@ -41,6 +41,6 @@ A wrapper around \code{\link{HDGC_VAR_multiple_I0}}. If GCpairs is used, the fun
 Alternatively, if we want to test all combinations between variables in GCto and GCfrom, these can be given directly. See Example.
 }
 \examples{
-\dontrun{GCto = list(c("V1", "V2")); GCfrom = list(c("V3", "V4", "V5"))}
-\dontrun{HDGC_VAR_multiple_pairs_I0(data,GCto,GCfrom,p=2,parallel = F)}
+\dontrun{GCto = list(c("Var 1", "Var 2")); GCfrom = list(c("Var 3", "Var 4", "Var 5"))}
+\dontrun{HDGC_VAR_multiple_pairs_I0(sample_dataset_I0,GCto,GCfrom,p=2)}
 }

@@ -37,5 +37,5 @@ LM test statistics, p-values (asymptotic and with finite sample correction) and 
 This function is a wrapper around \code{\link{HDGC_HVAR_RVCOV}} that allows for multiple combinations to be tested
 }
 \examples{
-\dontrun{ HDGC_HVAR_multiple_RVCOV(real_var, real_corr, GCpairs, log = T,parallel = T)}
+\dontrun{ HDGC_HVAR_multiple_RVCOV(real_var, real_corr, GCpairs, log = TRUE)}
 }

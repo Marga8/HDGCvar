@@ -12,7 +12,7 @@
 #' @return            LM test statistics, p-values (asymptotic and with finite sample correction) and Lasso selections are printed to the console
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster
-#' @examples \dontrun{ HDGC_HVAR_multiple_RVCOV(real_var, real_corr, GCpairs, log = T,parallel = T)}
+#' @examples \dontrun{ HDGC_HVAR_multiple_RVCOV(real_var, real_corr, GCpairs, log = TRUE)}
 HDGC_HVAR_multiple_RVCOV <- function(realized_variances, realized_correlations, GCpairs, log = TRUE, bound = 0.5 * nrow(realized_variances),
                                      parallel = FALSE, n_cores = NULL) {
 

@@ -36,6 +36,5 @@ LM test statistics, p-values: asymptotic and with finite sample correction and L
 Test Granger causality in High Dimensional mixed Integrated and Cointegrated VARs
 }
 \examples{
-\dontrun{GCpair<-list("GCto"="X1", "GCfrom"="X2")
-HDGC_VAR(GCpair, data, p=2,d=2, parallel=T)}
+HDGC_VAR(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), data=sample_dataset_I1, p=3, d=2)
 }

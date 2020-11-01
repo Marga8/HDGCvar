@@ -11,7 +11,7 @@
 #'
 #' @return            Granger causality matrix and Lasso selections are printed to the console
 #' @export
-#' @examples \dontrun{HDGC_VAR_all(data, p=2, d=2,parallel = T ) }
+#' @examples \dontrun{HDGC_VAR_all(data=sample_dataset_I1, p=2, d=2, parallel=TRUE )}
 HDGC_VAR_all <- function(data, p = 1, d = 0, bound = 0.5 * nrow(data),
                          parallel = FALSE, n_cores = NULL) {
   varnames <- colnames(data)

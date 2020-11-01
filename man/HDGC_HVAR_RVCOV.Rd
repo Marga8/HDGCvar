@@ -33,6 +33,5 @@ LM test statistics and p-values: asymptotic, with finite sample correction and a
 Test Granger causality for Realized Volatilities in High Dimensional Stationary Heterogeneous VARs conditioning on Realized Correlations
 }
 \examples{
-\dontrun{GCpair<-list("GCto"="X", "GCfrom"="Z")
-HDGC_HVAR_RVCOV(GCpair, real_var, real_corr,parallel = T)}
+\dontrun{HDGC_HVAR_RVCOV(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), real_var, real_corr)}
 }

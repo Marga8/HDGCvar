@@ -31,5 +31,5 @@ Wrapper around \code{\link{HDGC_HVAR_multiple}} which tests Granger causality fr
 one by one. Can therefore be used to construct a network.
 }
 \examples{
-\dontrun{HDGC_HVAR_all(data, log=T, parallel = T) }
+\dontrun{HDGC_HVAR_all(data=sample_RV, log=TRUE, parallel = TRUE) }
 }

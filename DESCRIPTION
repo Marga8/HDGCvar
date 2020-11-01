@@ -25,7 +25,8 @@ Imports:
     igraph,
     parallel,
     stats,
-    zoo
+    zoo,
+    HARModel
 Suggests: 
     testthat,
     knitr,

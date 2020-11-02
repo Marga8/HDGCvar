@@ -2,7 +2,7 @@
 % Please edit documentation in R/HDGC_HVAR_all.R
 \name{HDGC_HVAR_all}
 \alias{HDGC_HVAR_all}
-\title{Granger Causality Network in High Dimensional Stationary HVARs}
+\title{Granger Causality Network in High Dimensional HVARs}
 \usage{
 HDGC_HVAR_all(
   data,
@@ -13,7 +13,7 @@ HDGC_HVAR_all(
 )
 }
 \arguments{
-\item{data}{the data matrix or something that can be coerced to a matrix containing realized volatilities}
+\item{data}{the data matrix or an object that can be coerced to a matrix containing (stationary) realized volatilities}
 
 \item{log}{default is TRUE, if the realized volatilities are already log transformed then put  to FALSE}
 
@@ -24,7 +24,7 @@ HDGC_HVAR_all(
 \item{n_cores}{nr of cores to use in parallel computing, default is all but one}
 }
 \value{
-Granger causality matrix and Lasso selections are printed to the console
+A Granger causality matrix and Lasso selections are printed to the console
 }
 \description{
 Wrapper around \code{\link{HDGC_HVAR_multiple}} which tests Granger causality from each variable to all other variables,

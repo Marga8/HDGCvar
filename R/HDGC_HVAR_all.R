@@ -1,14 +1,14 @@
-#' @title Granger Causality Network in High Dimensional Stationary HVARs
+#' @title Granger Causality Network in High Dimensional HVARs
 #'
 #' @description Wrapper around \code{\link{HDGC_HVAR_multiple}} which tests Granger causality from each variable to all other variables,
 #' one by one. Can therefore be used to construct a network.
-#' @param data        the data matrix or something that can be coerced to a matrix containing realized volatilities
+#' @param data        the data matrix or an object that can be coerced to a matrix containing (stationary) realized volatilities
 #' @param  log        default is TRUE, if the realized volatilities are already log transformed then put  to FALSE
 #' @param  bound      lower bound on tuning parameter lambda
 #' @param  parallel   TRUE for parallel computing
 #' @param  n_cores    nr of cores to use in parallel computing, default is all but one
 #'
-#' @return            Granger causality matrix and Lasso selections are printed to the console
+#' @return            A Granger causality matrix and Lasso selections are printed to the console
 #' @export
 #' @examples \dontrun{HDGC_HVAR_all(data=sample_RV, log=TRUE, parallel = TRUE) }
 HDGC_HVAR_all <- function(data, log = TRUE, bound = 0.5 * nrow(data),

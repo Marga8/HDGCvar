@@ -17,7 +17,7 @@ HDGC_VAR_multiple_pairs(
 )
 }
 \arguments{
-\item{data}{the data matrix or something that can be coerced to a matrix.}
+\item{data}{the data matrix or object that can be coerced to a matrix.}
 
 \item{GCpairs}{it should contain a nested list. The outer list is all the pairs to be considered. See \code{ \link{HDGC_VAR_multiple}}.
 The inner list contains the GCto and GCfrom vectors needed for \code{\link{HDGC_VAR}}.}

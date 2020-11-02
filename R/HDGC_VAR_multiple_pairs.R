@@ -2,7 +2,7 @@
 #' @description A wrapper around \code{\link{HDGC_VAR_multiple}}. If GCpairs is used,
 #' the function is the same as \code{\link{HDGC_VAR_multiple}}. Alternatively, if a we want to test all combinations between
 #' variables in GCto and GCfrom, these can be given directly. See Example.
-#' @param  data       the data matrix or something that can be coerced to a matrix.
+#' @param  data       the data matrix or object that can be coerced to a matrix.
 #' @param  GCpairs it should contain a nested list. The outer list is all the pairs to be considered. See \code{ \link{HDGC_VAR_multiple}}.
 #' The inner list contains the GCto and GCfrom vectors needed for \code{\link{HDGC_VAR}}.
 #' @param  GCto       all combination variables Granger caused

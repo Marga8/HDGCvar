@@ -1,7 +1,7 @@
 #' @title Networks of Realized Volatilities conditional on the set of Realized Correlations
 #'
-#' @param  realized_variances        Dataset of realized volatilities. A matrix or something that can be coerced to a matrix.
-#' @param  realized_covariances      Dataset of realized covariances. A matrix or something that can be coerced to a matrix. Note: the columns should exactly
+#' @param  realized_variances        Dataset of (stationary) realized volatilities. A matrix or object that can be coerced to a matrix.
+#' @param  realized_covariances      Dataset of (stationary) realized covariances. A matrix or object that can be coerced to a matrix. Note: the columns should exactly
 #' be (((ncol(realized_volatilities)^2)-ncol(realized_volatilities))/2)
 #' @param  fisher_transf             Logical: if TRUE the correlations are computed and Fisher transformed
 #' @param  log                       Default is TRUE, if the realized volatilities are already log transformed then put to FALSE

@@ -14,7 +14,7 @@ HDGC_VAR_all(
 )
 }
 \arguments{
-\item{data}{the data matrix or something that can be coerced to a matrix.}
+\item{data}{the data matrix or object that can be coerced to a matrix.}
 
 \item{p}{lag length of VAR}
 

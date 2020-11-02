@@ -2,7 +2,7 @@
 % Please edit documentation in R/HDGC_HVAR_RVCOV.R
 \name{HDGC_HVAR_RVCOV}
 \alias{HDGC_HVAR_RVCOV}
-\title{Test Granger causality for Realized Volatilities in High Dimensional Stationary Heterogeneous VARs conditioning on Realized Correlations}
+\title{Test Granger causality for Realized Volatilities in High Dimensional Heterogeneous VARs conditioning on Realized Correlations}
 \usage{
 HDGC_HVAR_RVCOV(
   GCpair,
@@ -16,9 +16,9 @@ HDGC_HVAR_RVCOV(
 \arguments{
 \item{GCpair}{A named list with names GCto and GCfrom containing vectors of the relevant GC variables.}
 
-\item{realized_variances}{Dataset of realized volatilities. A matrix or something that can be coerced to a matrix. Note: the volatilities must not be in logs.}
+\item{realized_variances}{Dataset of (stationary) realized volatilities. A matrix or object that can be coerced to a matrix. Note: the volatilities must not be in logs.}
 
-\item{realized_correlations}{Dataset of realized correlations. To compute realized correlations from realized variances and realized covariances use \code{\link{Realized_corr}}}
+\item{realized_correlations}{Dataset of (stationary) realized correlations. To compute realized correlations from realized variances and realized covariances use \code{\link{Realized_corr}}}
 
 \item{bound}{lower bound on tuning parameter lambda}
 
@@ -27,10 +27,11 @@ HDGC_HVAR_RVCOV(
 \item{n_cores}{nr of cores to use in parallel computing, default is all but one}
 }
 \value{
-LM test statistics and p-values: asymptotic, with finite sample correction and asymptotic with heteroscedasticity correction and Lasso selections are printed to the console
+LM Chi-square test statistics (asymptotic), LM F-stat with finite sample correction, LM Chi-square (asymptotic) with heteroscedasticity correction, all with their corresponding p-value.
+Lasso selections are also printed to the console.
 }
 \description{
-Test Granger causality for Realized Volatilities in High Dimensional Stationary Heterogeneous VARs conditioning on Realized Correlations
+Test Granger causality for Realized Volatilities in High Dimensional Heterogeneous VARs conditioning on Realized Correlations
 }
 \examples{
 \dontrun{HDGC_HVAR_RVCOV(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), real_var, real_corr)}

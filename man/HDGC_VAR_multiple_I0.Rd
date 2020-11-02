@@ -14,7 +14,7 @@ HDGC_VAR_multiple_I0(
 )
 }
 \arguments{
-\item{data}{the data matrix or something that can be coerced to a matrix.}
+\item{data}{the data matrix or object that can be coerced to a matrix.}
 
 \item{GCpairs}{it should contain a nested list. The outer list is all the pairs to be considered.
 The inner list contains the GCto and GCfrom vectors needed for \code{\link{HDGC_VAR_I0}}.}
@@ -28,7 +28,8 @@ The inner list contains the GCto and GCfrom vectors needed for \code{\link{HDGC_
 \item{n_cores}{nr of cores to use in parallel computing, default is all but one}
 }
 \value{
-LM test statistics, p-values: asymptotic and with finite sample correction and Lasso selections are printed to the console
+LM Chi-square test statistics (asymptotic), LM F-stat with finite sample correction, both with their corresponding p-value.
+Lasso selections are also printed to the console.
 }
 \description{
 This function is a wrapper around \code{\link{HDGC_VAR_I0}} that allows for multiple combinations to be tested

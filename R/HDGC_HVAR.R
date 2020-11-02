@@ -1,12 +1,14 @@
-#' @title  Test Granger causality in High Dimensional Stationary Heterogeneous VARs
+#' @title  Test Granger causality in High Dimensional HVARs
 #'
-#' @param  GCpair     A named list with names GCto and GCfrom containing vectors of the relevant GC variables.
-#' @param  data       the data matrix or something that can be transformed to a matrix containing realized volatilities.
+#' @description       Test Granger causality in High Dimensional (Stationary) Heterogeneous VARs
+#' @param  GCpair     a named list with names GCto and GCfrom containing vectors of the relevant GC variables.
+#' @param  data       the data matrix or an object that can be transformed to a matrix containing (stationary) realized volatilities.
 #' @param  log        default is TRUE, if the realized volatilities are already log transformed then put =FALSE
 #' @param  bound      lower bound on tuning parameter lambda
 #' @param  parallel   TRUE for parallel computing
 #' @param  n_cores    nr of cores to use in parallel computing, default is all but one
-#' @return            LM test statistics and p-values: asymptotic, with finite sample correction and asymptotic with heteroscedasticity correction and Lasso selections are printed to the console
+#' @return            LM Chi-square test statistics (asymptotic), LM F-stat with finite sample correction, LM Chi-square (asymptotic) with heteroscedasticity correction, all with their corresponding p-value.
+#' Lasso selections are also printed to the console.
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster
 #' @importFrom stats cor

@@ -2,7 +2,7 @@
 % Please edit documentation in R/HDGC_HVAR_multiple_RVCOV.R
 \name{HDGC_HVAR_multiple_RVCOV}
 \alias{HDGC_HVAR_multiple_RVCOV}
-\title{Test multiple combinations Granger causality for realized volatilities in High Dimensional Stationary HVARs}
+\title{Test multiple combinations Granger causality for realized volatilities in High Dimensional HVARs}
 \usage{
 HDGC_HVAR_multiple_RVCOV(
   realized_variances,
@@ -15,9 +15,9 @@ HDGC_HVAR_multiple_RVCOV(
 )
 }
 \arguments{
-\item{realized_variances}{Dataset of realized volatilities. A matrix or something that can be coerced to a matrix. Note: the volatilities must not be in logs.}
+\item{realized_variances}{Dataset of (stationary) realized volatilities. A matrix or something that can be coerced to a matrix. Note: the volatilities must not be in logs.}
 
-\item{realized_correlations}{Dataset of realized correlations. To compute realized correlations from realized variances and realized covariances use \code{\link{Realized_corr}}}
+\item{realized_correlations}{Dataset of (stationary) realized correlations. To compute realized correlations from realized variances and realized covariances use \code{\link{Realized_corr}}}
 
 \item{GCpairs}{it should contain a nested list. The outer list is all the pairs to be considered. See \code{ \link{HDGC_HVAR_RVCOV}}.
 The inner list contains the GCto and GCfrom vectors needed for \code{\link{HDGC_HVAR_RVCOV}}.}

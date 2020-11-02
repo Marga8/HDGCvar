@@ -2,7 +2,7 @@
 % Please edit documentation in R/HDGC_HVAR_multiple.R
 \name{HDGC_HVAR_multiple}
 \alias{HDGC_HVAR_multiple}
-\title{Test multiple combinations Granger causality in High Dimensional Stationary HVARs}
+\title{Test multiple combinations Granger causality in High Dimensional HVARs}
 \usage{
 HDGC_HVAR_multiple(
   data,
@@ -14,7 +14,7 @@ HDGC_HVAR_multiple(
 )
 }
 \arguments{
-\item{data}{the data matrix or something that can be coerced to a matrix containing realized volatilities.}
+\item{data}{the data matrix or an object that can be coerced to a matrix containing (stationary) realized volatilities.}
 
 \item{GCpairs}{it should contain a nested list: the outer list is all the pairs to be considered,
 the inner list contains the GCto and GCfrom vectors needed for \code{ \link{HDGC_HVAR}}. See Example.}
@@ -28,7 +28,8 @@ the inner list contains the GCto and GCfrom vectors needed for \code{ \link{HDGC
 \item{n_cores}{numberr of cores to use in parallel computing, default is all but one}
 }
 \value{
-LM test statistics, p-values: asymptotic and with finite sample correction and Lasso selections are printed to the console
+LM Chi-square test statistics (asymptotic), LM F-stat with finite sample correction, LM Chi-square (asymptotic) with heteroscedasticity correction, all with their corresponding p-value.
+Lasso selections are also printed to the console.
 }
 \description{
 This function is a wrapper around \code{\link{HDGC_HVAR}} that allows for multiple combinations to be tested

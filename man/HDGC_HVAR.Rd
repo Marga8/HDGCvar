@@ -2,7 +2,7 @@
 % Please edit documentation in R/HDGC_HVAR.R
 \name{HDGC_HVAR}
 \alias{HDGC_HVAR}
-\title{Test Granger causality in High Dimensional Stationary Heterogeneous VARs}
+\title{Test Granger causality in High Dimensional HVARs}
 \usage{
 HDGC_HVAR(
   GCpair,
@@ -14,9 +14,9 @@ HDGC_HVAR(
 )
 }
 \arguments{
-\item{GCpair}{A named list with names GCto and GCfrom containing vectors of the relevant GC variables.}
+\item{GCpair}{a named list with names GCto and GCfrom containing vectors of the relevant GC variables.}
 
-\item{data}{the data matrix or something that can be transformed to a matrix containing realized volatilities.}
+\item{data}{the data matrix or an object that can be transformed to a matrix containing (stationary) realized volatilities.}
 
 \item{log}{default is TRUE, if the realized volatilities are already log transformed then put =FALSE}
 
@@ -27,10 +27,11 @@ HDGC_HVAR(
 \item{n_cores}{nr of cores to use in parallel computing, default is all but one}
 }
 \value{
-LM test statistics and p-values: asymptotic, with finite sample correction and asymptotic with heteroscedasticity correction and Lasso selections are printed to the console
+LM Chi-square test statistics (asymptotic), LM F-stat with finite sample correction, LM Chi-square (asymptotic) with heteroscedasticity correction, all with their corresponding p-value.
+Lasso selections are also printed to the console.
 }
 \description{
-Test Granger causality in High Dimensional Stationary Heterogeneous VARs
+Test Granger causality in High Dimensional (Stationary) Heterogeneous VARs
 }
 \examples{
 HDGC_HVAR(GCpair=list("GCto"="Var 1", "GCfrom"="Var 5"), data=sample_RV,log=TRUE)

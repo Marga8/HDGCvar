@@ -1,7 +1,7 @@
 #' @title Test multiple pairs Granger causality in High Dimensional Stationary VARs
 #' @description A wrapper around \code{\link{HDGC_VAR_multiple_I0}}. If GCpairs is used, the function is the same as \code{\link{HDGC_VAR_multiple_I0}}.
 #' Alternatively, if we want to test all combinations between variables in GCto and GCfrom, these can be given directly. See Example.
-#' @param data        the data matrix or something that can be coerced to a matrix.
+#' @param data        the data matrix or object that can be coerced to a matrix.
 #' @param  GCpairs it should contain a nested list. The outer list is all the pairs to be considered. See \code{ \link{HDGC_VAR_multiple_I0}}.
 #' The inner list contains the GCto and GCfrom vectors needed for \code{\link{HDGC_VAR_I0}}.
 #' @param  GCto       all combination variables Granger caused

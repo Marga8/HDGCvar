@@ -1,12 +1,13 @@
 #' @title Test Granger causality in High Dimensional Stationary VARs
 #'
 #' @param  GCpair     a named list with names GCto and GCfrom containing vectors of the relevant GC variables.
-#' @param  data       data matrix or something that can be coerced to a matrix.
+#' @param  data       data matrix or object that can be coerced to a matrix.
 #' @param  p          lag length of the VAR
 #' @param  bound      lower bound on tuning parameter lambda
 #' @param  parallel   TRUE for parallel computing
 #' @param  n_cores    nr of cores to use in parallel computing, default is all but one
-#' @return            LM test statistics, p values: asymptotic and with finite sample correction and Lasso selections are printed to the console
+#' @return            LM Chi-square test statistics (asymptotic), LM F-stat with finite sample correction, both with their corresponding p-value.
+#' Lasso selections are also printed to the console.
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster
 #' @importFrom stats cor

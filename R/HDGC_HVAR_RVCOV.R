@@ -1,12 +1,13 @@
-#' @title  Test Granger causality for Realized Volatilities in High Dimensional Stationary Heterogeneous VARs conditioning on Realized Correlations
+#' @title  Test Granger causality for Realized Volatilities in High Dimensional Heterogeneous VARs conditioning on Realized Correlations
 #'
 #' @param  GCpair     A named list with names GCto and GCfrom containing vectors of the relevant GC variables.
-#' @param realized_variances Dataset of realized volatilities. A matrix or something that can be coerced to a matrix. Note: the volatilities must not be in logs.
-#' @param realized_correlations Dataset of realized correlations. To compute realized correlations from realized variances and realized covariances use \code{\link{Realized_corr}}
+#' @param realized_variances Dataset of (stationary) realized volatilities. A matrix or object that can be coerced to a matrix. Note: the volatilities must not be in logs.
+#' @param realized_correlations Dataset of (stationary) realized correlations. To compute realized correlations from realized variances and realized covariances use \code{\link{Realized_corr}}
 #' @param  bound      lower bound on tuning parameter lambda
 #' @param  parallel   TRUE for parallel computing
 #' @param  n_cores    nr of cores to use in parallel computing, default is all but one
-#' @return            LM test statistics and p-values: asymptotic, with finite sample correction and asymptotic with heteroscedasticity correction and Lasso selections are printed to the console
+#' @return            LM Chi-square test statistics (asymptotic), LM F-stat with finite sample correction, LM Chi-square (asymptotic) with heteroscedasticity correction, all with their corresponding p-value.
+#' Lasso selections are also printed to the console.
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster parLapply
 #' @examples \dontrun{HDGC_HVAR_RVCOV(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), real_var, real_corr)}

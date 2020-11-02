@@ -2,7 +2,7 @@
 % Please edit documentation in R/HDGC_HVAR_multiple_pairs.R
 \name{HDGC_HVAR_multiple_pairs}
 \alias{HDGC_HVAR_multiple_pairs}
-\title{Test multiple pairs Granger causality in High Dimensional Stationary HVARs}
+\title{Test multiple pairs Granger causality in High Dimensional HVARs}
 \usage{
 HDGC_HVAR_multiple_pairs(
   data,
@@ -16,7 +16,7 @@ HDGC_HVAR_multiple_pairs(
 )
 }
 \arguments{
-\item{data}{the data matrix or something that can be coerced to a matrix containing realized volatilities}
+\item{data}{the data matrix or something that can be coerced to a matrix containing (stationary) realized volatilities}
 
 \item{GCpairs}{it should contain a nested list. The outer list is all the pairs to be considered.
 The inner list contains the GCto and GCfrom vectors needed for \code{\link{HDGC_HVAR}}. See \code{ \link{HDGC_HVAR_multiple}}.}

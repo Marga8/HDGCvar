@@ -15,27 +15,27 @@ Plot_GC_all(
 )
 }
 \arguments{
-\item{Comb}{result of function \code{\link{HDGC_VAR_all_I0}}, \code{\link{HDGC_VAR_multiple_pairs_I0}}, \code{\link{HDGC_VAR_all}}, \code{\link{HDGC_VAR_multiple_pairs}}, \code{\link{HDGC_HVAR_all}} or \code{\link{HDGC_HVAR_multiple_pairs}}}
+\item{Comb}{output from: \code{\link{HDGC_VAR_all_I0}}, \code{\link{HDGC_VAR_multiple_pairs_I0}}, \code{\link{HDGC_VAR_all}}, \code{\link{HDGC_VAR_multiple_pairs}}, \code{\link{HDGC_HVAR_all}} or \code{\link{HDGC_HVAR_multiple_pairs}}}
 
-\item{Stat_type}{either FS_cor (default), Asymp or Asymp_Robust respectively for F small sample correction, standard chi square test, standard chi square test with heteroscedasticity correction}
+\item{Stat_type}{either FS_cor (default), Asymp or Asymp_Robust respectively for F-stat small sample correction, standard Chi square test, standard chi square test with heteroscedasticity correction}
 
 \item{alpha}{the desired probability of type one error, default is 0.01.}
 
-\item{multip_corr}{A list: first element is logical, if TRUE a multiple testing correction using stats::p.adjust() is used. The second
+\item{multip_corr}{A list: first element is logical, if TRUE a multiple testing correction using \code{\link[stats]{p.adjust}} is used. The second
 element of the list define the p.adjust.method=c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY",
-"fdr", "none")). If the second element gets the name "APF_FDR" then APFr::apf_fdr which uses empirical Bayes is called and a third and fourth
-elements in the mutip_corr list are required: gamm=c(,,) requires a min, max and step length values to be set for the threshold on the p_values,
-fdr.apf=c(,) requires one or two values: either (NULL,value) or (value,NULL) if one wants to have specified amount of average power (fdr) no matter fdr (average power).
+"fdr", "none")). If the second element gets the name "apf_fdr" then \code{\link[APFr]{apf_fdr}} is called which uses empirical Bayes is called and a third and fourth
+elements in the mutip_corr list are required: gamm=c(a,b,c) requires a min (a), max (b) and step length (c) values to be set for the threshold on the p_values,
+\code{\link[APFr]{apf_fdr}} requires one or two values: either (NULL,value) or (value,NULL) if one wants to have specified amount of average power (fdr) no matter fdr (average power).
 If both (value,value) are given, the calculated threshold will find the closest combination to both apf and fdr desired. The last element
 of the list is logical: verbose=TRUE if one wants to know how much apf/fdr the testing has.}
 
-\item{...}{all parameters for the network plot: see example and igraph documentation.}
+\item{...}{all parameters for the network plot: see example and \code{\link[igraph]{graph_from_adjacency_matrix}} documentation.}
 
-\item{cluster}{A list: first element is logical, if TRUE a cluster plot using igraph::cluster_edge_betweenness() is plotted.
-Other elements are respectively: vertex.size, vertex.label.color,vertex.label.cex, vertex.label.dist, edge.curved (see igraph for details).}
+\item{cluster}{A list: first element is logical, if TRUE a cluster plot using \code{\link[igraph]{cluster_edge_betweenness}} is plotted.
+Other elements are respectively: vertex.size, vertex.label.color,vertex.label.cex, vertex.label.dist, edge.curved (see \code{\link[igraph]{graph_from_adjacency_matrix}} for details).}
 }
 \value{
-a network compatible with igraph
+a \code{\link[igraph]{graph_from_adjacency_matrix}} network
 }
 \description{
 Plot High-Dimensional Granger causality Networks

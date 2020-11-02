@@ -15,9 +15,9 @@ HDGC_HVAR_RV_RCoV_all(
 )
 }
 \arguments{
-\item{realized_variances}{Dataset of realized volatilities. A matrix or something that can be coerced to a matrix.}
+\item{realized_variances}{Dataset of (stationary) realized volatilities. A matrix or object that can be coerced to a matrix.}
 
-\item{realized_covariances}{Dataset of realized covariances. A matrix or something that can be coerced to a matrix. Note: the columns should exactly
+\item{realized_covariances}{Dataset of (stationary) realized covariances. A matrix or object that can be coerced to a matrix. Note: the columns should exactly
 be (((ncol(realized_volatilities)^2)-ncol(realized_volatilities))/2)}
 
 \item{fisher_transf}{Logical: if TRUE the correlations are computed and Fisher transformed}

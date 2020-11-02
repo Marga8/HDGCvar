@@ -17,7 +17,7 @@ HDGC_VAR(
 \arguments{
 \item{GCpair}{a named list with names GCto and GCfrom containing vectors of the relevant GC variables.}
 
-\item{data}{a data matrix or something that can be coerced to a matrix}
+\item{data}{a data matrix or object that can be coerced to a matrix}
 
 \item{p}{lag length of the VAR}
 
@@ -30,7 +30,8 @@ HDGC_VAR(
 \item{n_cores}{nr of cores to use in parallel computing, default is all but one}
 }
 \value{
-LM test statistics, p-values: asymptotic and with finite sample correction and Lasso selections are printed to the console
+LM Chi-square test statistics (asymptotic), LM F-stat with finite sample correction, both with their corresponding p-value.
+Lasso selections are also printed to the console.
 }
 \description{
 Test Granger causality in High Dimensional mixed Integrated and Cointegrated VARs

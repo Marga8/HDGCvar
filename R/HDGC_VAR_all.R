@@ -2,7 +2,7 @@
 #'
 #' @description Wrapper around \code{\link{HDGC_VAR_multiple}} which tests Granger causality from each variable to all other variables,
 #' one by one. Can therefore be used to construct a network.
-#' @param data        the data matrix or something that can be coerced to a matrix.
+#' @param data        the data matrix or object that can be coerced to a matrix.
 #' @param  p          lag length of VAR
 #' @param  d          order of lag augmentation corresponding to suspected max order of integration
 #' @param  bound      lower bound on tuning parameter lambda

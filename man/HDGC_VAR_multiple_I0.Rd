@@ -38,3 +38,6 @@ This function is a wrapper around \code{\link{HDGC_VAR_I0}} that allows for mult
 \dontrun{GC=list(list("GCto"="Var 1", "GCfrom"="Var 2"),list("GCto"="Var 2", "GCfrom"="Var 3"))}
 \dontrun{HDGC_VAR_multiple_I0(sample_dataset_I0, GC, p=1 )}
 }
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+}

@@ -49,3 +49,8 @@ variables in GCto and GCfrom, these can be given directly. See Example.
 \dontrun{HDGC_VAR_multiple_pairs(sample_dataset_I1,GCto,GCfrom,p=2,d=2)
 }
 }
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Inference in Non Stationary High Dimensional VARs" (2020, check the latest version at https://sites.google.com/view/luca-margaritella )
+
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+}

@@ -39,3 +39,8 @@ Test Granger causality in High Dimensional mixed Integrated and Cointegrated VAR
 \examples{
 HDGC_VAR(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), data=sample_dataset_I1, p=3, d=2)
 }
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Inference in Non Stationary High Dimensional VARs" (2020, check the latest version at https://sites.google.com/view/luca-margaritella )
+
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+}

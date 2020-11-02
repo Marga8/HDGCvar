@@ -13,6 +13,8 @@
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster
 #' @importFrom stats cor
 #' @examples HDGC_HVAR(GCpair=list("GCto"="Var 1", "GCfrom"="Var 5"), data=sample_RV,log=TRUE)
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+#' @references  Corsi, Fulvio. "A simple approximate long-memory model of realized volatility." Journal of Financial Econometrics 7.2 (2009): 174-196.
 HDGC_HVAR <- function(GCpair, data, log = TRUE, bound = 0.5 * nrow(data),
                       parallel = FALSE, n_cores = NULL) {
   p = 3 #impose Three lags (HVAR)

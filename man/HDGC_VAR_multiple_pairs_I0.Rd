@@ -44,3 +44,6 @@ Alternatively, if we want to test all combinations between variables in GCto and
 \dontrun{GCto = list(c("Var 1", "Var 2")); GCfrom = list(c("Var 3", "Var 4", "Var 5"))}
 \dontrun{HDGC_VAR_multiple_pairs_I0(sample_dataset_I0,GCto,GCfrom,p=2)}
 }
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+}

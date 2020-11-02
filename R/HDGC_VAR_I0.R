@@ -12,6 +12,7 @@
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster
 #' @importFrom stats cor
 #' @examples HDGC_VAR_I0(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), data=sample_dataset_I0, p=2)
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
 HDGC_VAR_I0 <- function(GCpair, data, p = 1, bound = 0.5 * nrow(data),
                         parallel = FALSE, n_cores = NULL) {
   GCto <- GCpair$GCto #Granger-caused variable

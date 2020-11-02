@@ -45,3 +45,8 @@ variables in GCto and GCfrom, these can be given directly. See Example.
 \dontrun{GCto = list(c("Var 1", "Var 2")); GCfrom = list(c("Var 3", "Var 4", "Var 5"))}
 \dontrun{HDGC_HVAR_multiple_pairs(sample_RV,GCto,GCfrom, log=TRUE)}
 }
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+
+Corsi, Fulvio. "A simple approximate long-memory model of realized volatility." Journal of Financial Econometrics 7.2 (2009): 174-196.
+}

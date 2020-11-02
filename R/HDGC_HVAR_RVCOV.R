@@ -11,6 +11,8 @@
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster parLapply
 #' @examples \dontrun{HDGC_HVAR_RVCOV(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), real_var, real_corr)}
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+#' @references  Corsi, Fulvio. "A simple approximate long-memory model of realized volatility." Journal of Financial Econometrics 7.2 (2009): 174-196.
 HDGC_HVAR_RVCOV <- function(GCpair, realized_variances, realized_correlations, bound = 0.5 * nrow(realized_variances),
                             parallel = FALSE, n_cores = NULL) {
   p = 3 #impose Three lags (HVAR)

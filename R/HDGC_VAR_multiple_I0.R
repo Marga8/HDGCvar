@@ -13,6 +13,7 @@
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster parLapply
 #' @examples \dontrun{GC=list(list("GCto"="Var 1", "GCfrom"="Var 2"),list("GCto"="Var 2", "GCfrom"="Var 3"))}
 #' \dontrun{HDGC_VAR_multiple_I0(sample_dataset_I0, GC, p=1 )}
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
 HDGC_VAR_multiple_I0 <- function(data, GCpairs, p = 1, bound = 0.5 * nrow(data),
                                  parallel = FALSE, n_cores = NULL) {
   if (parallel) {

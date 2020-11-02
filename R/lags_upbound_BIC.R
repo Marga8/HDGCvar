@@ -7,6 +7,8 @@
 #' @return  returns the estimated lag length upper bound
 #' @export
 #' @examples  lags_upbound_BIC(sample_dataset_I1, p_max=10)
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Inference in Non Stationary High Dimensional VARs" (2020, check the latest version at https://sites.google.com/view/luca-margaritella )
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
 lags_upbound_BIC<-function(data,p_max=10){
 
   data<-as.matrix(data) #data

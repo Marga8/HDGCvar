@@ -346,7 +346,7 @@ interest_variables=list("GCto"="Var 1","GCfrom"="Var 5")
 HDGC_VAR(GCpair=interest_variables, data=dataset, p = selected_lag, d = 2, bound = 0.5 * nrow(dataset),
                      parallel = T, n_cores = NULL) 
 #> Warning in HDGC_VAR(GCpair = interest_variables, data = dataset, p = selected_lag, : To avoid spurious regression problems in the post-double-selection steps,
-#>             unless you are certain that your series are maximum I(1), you should increase the lag length p to be larger than d
+#>             unless you are certain that your series are maximum I(1), you might want to consider increasing the lag length p to be larger than d
 #> $tests
 #>             Asymp    FS_cor
 #> LM_stat 2.1901403 0.8547127
@@ -512,3 +512,26 @@ HDGC_VAR(GCpair=interest_variables, data=dataset, p = 3, d = 2, bound = 0.5 * nr
 #>     FALSE
 # It is clear upon inspection of the selctions that the modifications of p does not come without efficiency loss for the statistical tests. 
 ```
+
+## References
+
+  - Belloni, A., Chernozhukov, V., Hansen, C., “Inference on treatment
+    effects after selection among high-dimensional controls.” The Review
+    of Economic Studies 81.2 (2014): 608-650.
+  - Corsi, Fulvio. “A simple approximate long-memory model of realized
+    volatility.” Journal of Financial Econometrics 7.2 (2009): 174-196.
+  - Granger, Clive WJ. “Investigating causal relations by econometric
+    models and cross-spectral methods.” Econometrica: journal of the
+    Econometric Society (1969): 424-438.
+  - Hecq, A., Margaritella, L., Smeekes, S., “Inference in Non
+    Stationary High Dimensional VARs” (2020, check the latest version at
+    <https://sites.google.com/view/luca-margaritella> )
+  - Hecq, A., Margaritella, L., Smeekes, S., “Granger Causality Testing
+    in High-Dimensional VARs: a Post-Double-Selection Procedure.” arXiv
+    preprint arXiv:1902.10991 (2019).
+  - Newman, Mark EJ, and Michelle Girvan. “Finding and evaluating
+    community structure in networks.” Physical review E 69.2 (2004):
+    026113.
+  - Quatto, Piero, et al. “Brain networks construction using Bayes FDR
+    and average power function.” Statistical Methods in Medical Research
+    29.3 (2020): 866-878.

@@ -41,3 +41,8 @@ This function is a wrapper around \code{\link{HDGC_VAR}} that allows for multipl
 \dontrun{GC=list(list("GCto"="Var 1","GCfrom"="Var 2"),list("GCto"="Var 2","GCfrom"="Var 3"))}
 \dontrun{HDGC_VAR_multiple(sample_dataset_I1,GCpairs=GC,3,2)}
 }
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Inference in Non Stationary High Dimensional VARs" (2020, check the latest version at https://sites.google.com/view/luca-margaritella )
+
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+}

@@ -36,3 +36,8 @@ Test Granger causality for Realized Volatilities in High Dimensional Heterogeneo
 \examples{
 \dontrun{HDGC_HVAR_RVCOV(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), real_var, real_corr)}
 }
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+
+Corsi, Fulvio. "A simple approximate long-memory model of realized volatility." Journal of Financial Econometrics 7.2 (2009): 174-196.
+}

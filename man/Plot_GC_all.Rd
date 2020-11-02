@@ -23,7 +23,7 @@ Plot_GC_all(
 
 \item{multip_corr}{A list: first element is logical, if TRUE a multiple testing correction using \code{\link[stats]{p.adjust}} is used. The second
 element of the list define the p.adjust.method=c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY",
-"fdr", "none")). If the second element gets the name "apf_fdr" then \code{\link[APFr]{apf_fdr}} is called which uses empirical Bayes is called and a third and fourth
+"fdr", "none")). If the second element gets the name "APF_FDR" then \code{\link[APFr]{apf_fdr}} is called which uses empirical Bayes is called and a third and fourth
 elements in the mutip_corr list are required: gamm=c(a,b,c) requires a min (a), max (b) and step length (c) values to be set for the threshold on the p_values,
 \code{\link[APFr]{apf_fdr}} requires one or two values: either (NULL,value) or (value,NULL) if one wants to have specified amount of average power (fdr) no matter fdr (average power).
 If both (value,value) are given, the calculated threshold will find the closest combination to both apf and fdr desired. The last element
@@ -42,4 +42,13 @@ Plot High-Dimensional Granger causality Networks
 }
 \examples{
 \dontrun{Plot_GC_all(Comb, "FS_cor",alpha=0.01,multip_corr=list(F), directed=T, layout.circle}
+}
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Inference in Non Stationary High Dimensional VARs" (2020, check the latest version at https://sites.google.com/view/luca-margaritella )
+
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+
+Newman, Mark EJ, and Michelle Girvan. "Finding and evaluating community structure in networks." Physical review E 69.2 (2004): 026113.
+
+Quatto, Piero, et al. "Brain networks construction using Bayes FDR and average power function." Statistical Methods in Medical Research 29.3 (2020): 866-878.
 }

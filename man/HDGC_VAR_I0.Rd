@@ -36,3 +36,6 @@ Test Granger causality in High Dimensional Stationary VARs
 \examples{
 HDGC_VAR_I0(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), data=sample_dataset_I0, p=2)
 }
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+}

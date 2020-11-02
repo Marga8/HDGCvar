@@ -23,3 +23,6 @@ Fisher-transforming the realized correlations.
 \examples{
 \dontrun{Realized_corr(real_var, real_cov, fisher_transf=T)}
 }
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+}

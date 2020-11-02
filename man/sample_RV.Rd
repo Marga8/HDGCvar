@@ -20,7 +20,6 @@ sample_RV
 }
 \description{
 A dataset of 30 Realized Volatility time series of sample T=200 obtined by simulating 30 random instances from a
-Heterogeneous Autoregressive (HAR) model with daily, weekly and monthly lags. The simulations are obtained using the HARSimulate function from the package
-HARModel.
+Heterogeneous Autoregressive (HAR) model with daily, weekly and monthly lags. The simulations are obtained using \code{\link[HARModel]{HARSimulate}}.
 }
 \keyword{datasets}

@@ -11,6 +11,7 @@
 #' @return            Granger causality matrix and Lasso selections are printed to the console
 #' @export
 #' @examples \dontrun{HDGC_VAR_all_I0(data=sample_dataset_I0,p=2,parallel=T)}
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
 HDGC_VAR_all_I0 <- function(data, p = 1,  bound = 0.5 * nrow(data),
                             parallel = FALSE, n_cores = NULL) {
   varnames <- colnames(data)

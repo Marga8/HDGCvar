@@ -36,3 +36,8 @@ one by one. Can therefore be used to construct a network.
 \examples{
 \dontrun{HDGC_VAR_all(data=sample_dataset_I1, p=2, d=2, parallel=TRUE )}
 }
+\references{
+Hecq, A., Margaritella, L., Smeekes, S., "Inference in Non Stationary High Dimensional VARs" (2020, check the latest version at https://sites.google.com/view/luca-margaritella )
+
+Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+}

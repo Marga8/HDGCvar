@@ -5,6 +5,7 @@ Version: 0.1.0
 Authors@R: c(
   person("Luca", "Margaritella", email = "luca.margaritella@gmail.com", role = c("aut","cre")),
   person("Stephan", "Smeekes", email="s.smeekes@maastrichtuniversity.nl", role="aut"))
+Maintainer: Luca Margaritella <luca.margaritella@gmail.com>
 Description: HDGCvar allows for testing Granger causality in High Dimensional Vector Autoregressive Models. 
     The testing procedure is based on the Post Double Selection Lagrange Multiplier test developed in 
     A. Hecq, L. Margaritella, S.Smeekes, "Granger Causality Testing in High Dimensional VARs: a Post Double Selection Procedure"(2019) and

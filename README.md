@@ -265,6 +265,22 @@ using igraph::cluster\_edge\_betweenness() is plotted. Other elements
 are respectively: vertex.size, vertex.label.color,vertex.label.cex,
 vertex.label.dist, edge.curved (see igraph for details).
 
+## Data
+
+In `HDGCvar` the user can find three simulated datasets, namely:
+`sample_dataset_I0`, `sample_dataset_I1`, and `sample_RV`. For details
+on `sample_dataset_I0`, `sample_dataset_I1` look at the next section. In
+a nutshell, a stationary VAR(1) in first-differences, with 30 variables
+for 200 observations, is simulated in `sample_dataset_I0` and it is then
+reverted into a levels VAR(2) taking the inverse-differences in
+`sample_dataset_I1`. `sample_RV` contains 30 Realized Volatility time
+series of sample T=200 obtined by simulating 30 random instances from a
+Heterogeneous Autoregressive (HAR) model with daily, weekly and monthly
+lags. The simulations are obtained using the “HARSimulate” function from
+the package “HARModel”. The value for the constant and the daily, weekly
+and monthly lags coefficients are respectively 0.01, 0.36 ,0.28 , 0.28
+and the standard deviation of the error term is 0.001.
+
 ## Examples
 
 Here is a simulated examples which show you how to use some of the

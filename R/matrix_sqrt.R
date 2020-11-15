@@ -1,5 +1,6 @@
 #' Calculate square root of a matrix
 #'
+#' @keywords internal
 #' @param M the matrix
 #' @return the matrix square rooted
 matrix_sqrt <- function(M) {

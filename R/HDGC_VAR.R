@@ -1,18 +1,20 @@
 #' @title  Test Granger causality in High Dimensional mixed Integrated and Cointegrated VARs
 #'
 #' @param  GCpair     a named list with names GCto and GCfrom containing vectors of the relevant GC variables.
-#' @param  data       a data matrix or something that can be coerced to a matrix
+#' @param  data       a data matrix or object that can be coerced to a matrix
 #' @param  p          lag length of the VAR
 #' @param  d          order of lag augmentation corresponding to suspected max order of integration
 #' @param  bound      lower bound on tuning parameter lambda
 #' @param  parallel   TRUE for parallel computing
 #' @param  n_cores    nr of cores to use in parallel computing, default is all but one
-#' @return            LM test statistics, p-values: asymptotic and with finite sample correction and Lasso selections are printed to the console
+#' @return            LM Chi-square test statistics (asymptotic), LM F-stat with finite sample correction, both with their corresponding p-value.
+#' Lasso selections are also printed to the console.
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster parLapply
 #' @importFrom stats cor
-#' @examples \dontrun{GCpair<-list("GCto"="X1", "GCfrom"="X2")
-#' HDGC_VAR(GCpair, data, p=2,d=2, parallel=T)}
+#' @examples HDGC_VAR(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), data=sample_dataset_I1, p=3, d=2)
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Inference in Non Stationary High Dimensional VARs" (2020, check the latest version at https://sites.google.com/view/luca-margaritella )
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
 HDGC_VAR <- function(GCpair, data, p = 1, d = 0, bound = 0.5 * nrow(data),
                      parallel = FALSE, n_cores = NULL) {
   GCto <- GCpair$GCto #Granger-caused variable
@@ -21,6 +23,11 @@ HDGC_VAR <- function(GCpair, data, p = 1, d = 0, bound = 0.5 * nrow(data),
   Mat_corr<-as.matrix(cor(data))
   upper<-as.vector(Mat_corr[upper.tri(Mat_corr)])
   amount<-sum(upper >(1-0.001))
+  if(p<=d){
+    warning("To avoid spurious regression problems in the post-double-selection steps,
+            unless you are certain that your series are maximum I(1), you might want to consider increasing the lag length p to be larger than d")
+  }
+
   if(any(1-0.001<upper)){
     warning(paste("The used dataset contains",amount, "correlations larger than 0.999, this can cause failure of OLS and poor variable selection.",sep=" "))
   }

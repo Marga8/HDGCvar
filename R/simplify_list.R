@@ -1,5 +1,6 @@
 #'@title simplify output
 #'@description This function transforms and simplifies output of the GC testing functions below.
+#'@keywords internal
 #'@param test_list the test list from \code{ \link{LM_test}}.
 #'@param GCpairs the pairs
 #'@return the statistics and pvalues

@@ -1,5 +1,6 @@
 #' Inverse square root matrix
 #'
+#' @keywords internal
 #' @param M the matrix
 #' @return the inverse matrix square rooted
 inv_matrix_sqrt <- function(M) {

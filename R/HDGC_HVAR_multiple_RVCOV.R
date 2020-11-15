@@ -1,8 +1,8 @@
-#' @title Test multiple combinations Granger causality for realized volatilities in High Dimensional Stationary HVARs
+#' @title Test multiple combinations Granger causality for realized volatilities in High Dimensional HVARs
 #'
 #' @description This function is a wrapper around \code{\link{HDGC_HVAR_RVCOV}} that allows for multiple combinations to be tested
-#' @param realized_variances Dataset of realized volatilities. A matrix or something that can be coerced to a matrix. Note: the volatilities must not be in logs.
-#' @param realized_correlations Dataset of realized correlations. To compute realized correlations from realized variances and realized covariances use \code{\link{Realized_corr}}
+#' @param realized_variances Dataset of (stationary) realized volatilities. A matrix or something that can be coerced to a matrix. Note: the volatilities must not be in logs.
+#' @param realized_correlations Dataset of (stationary) realized correlations. To compute realized correlations from realized variances and realized covariances use \code{\link{Realized_corr}}
 #' @param GCpairs it should contain a nested list. The outer list is all the pairs to be considered. See \code{ \link{HDGC_HVAR_RVCOV}}.
 #' The inner list contains the GCto and GCfrom vectors needed for \code{\link{HDGC_HVAR_RVCOV}}.
 #' @param  log        default is TRUE, if the realized volatilities are already log transformed then put to FALSE
@@ -12,7 +12,9 @@
 #' @return            LM test statistics, p-values (asymptotic and with finite sample correction) and Lasso selections are printed to the console
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster
-#' @examples \dontrun{ HDGC_HVAR_multiple_RVCOV(real_var, real_corr, GCpairs, log = T,parallel = T)}
+#' @examples \dontrun{ HDGC_HVAR_multiple_RVCOV(real_var, real_corr, GCpairs, log = TRUE)}
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+#' @references  Corsi, Fulvio. "A simple approximate long-memory model of realized volatility." Journal of Financial Econometrics 7.2 (2009): 174-196.
 HDGC_HVAR_multiple_RVCOV <- function(realized_variances, realized_correlations, GCpairs, log = TRUE, bound = 0.5 * nrow(realized_variances),
                                      parallel = FALSE, n_cores = NULL) {
 

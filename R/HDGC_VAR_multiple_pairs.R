@@ -2,7 +2,7 @@
 #' @description A wrapper around \code{\link{HDGC_VAR_multiple}}. If GCpairs is used,
 #' the function is the same as \code{\link{HDGC_VAR_multiple}}. Alternatively, if a we want to test all combinations between
 #' variables in GCto and GCfrom, these can be given directly. See Example.
-#' @param  data       the data matrix or something that can be coerced to a matrix.
+#' @param  data       the data matrix or object that can be coerced to a matrix.
 #' @param  GCpairs it should contain a nested list. The outer list is all the pairs to be considered. See \code{ \link{HDGC_VAR_multiple}}.
 #' The inner list contains the GCto and GCfrom vectors needed for \code{\link{HDGC_VAR}}.
 #' @param  GCto       all combination variables Granger caused
@@ -14,9 +14,11 @@
 #' @param  n_cores    nr of cores to use in parallel computing, default is all but one
 #' @return            Granger causality matrix and Lasso selections are printed to the console
 #' @export
-#' @examples \dontrun{GCto = list(c("V1", "V2")); GCfrom = list(c("V3", "V4", "V5"))}
-#' \dontrun{HDGC_VAR_multiple_pairs(data,GCto,GCfrom,p=2,d=2,parallel = T)
+#' @examples \dontrun{GCto = list(c("Var 1", "Var 2")); GCfrom = list(c("Var 3", "Var 4", "Var 5"))}
+#' \dontrun{HDGC_VAR_multiple_pairs(sample_dataset_I1,GCto,GCfrom,p=2,d=2)
 #' }
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Inference in Non Stationary High Dimensional VARs" (2020, check the latest version at https://sites.google.com/view/luca-margaritella )
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
 HDGC_VAR_multiple_pairs <- function(data, GCpairs = NULL, GCto = NULL, GCfrom = NULL,
                                     p = 1, d = 0, bound = 0.5 * nrow(data),
                                     parallel = FALSE, n_cores = NULL) {

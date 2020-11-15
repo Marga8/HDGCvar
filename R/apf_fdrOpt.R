@@ -1,4 +1,5 @@
 #' @title Wrapper around APFr
+#' @keywords internal
 #' @description Wrapper around APFr \code{ apf_plot} to get the desired threshold on the p values such that the FDR is at most \code{ FDR_max}
 #' and APF is closest to \code{ APF_min}
 #' @param mat_input the input matrix

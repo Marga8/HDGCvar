@@ -1,7 +1,7 @@
 #' @title Networks of Realized Volatilities conditional on the set of Realized Correlations
 #'
-#' @param  realized_variances        Dataset of realized volatilities. A matrix or something that can be coerced to a matrix.
-#' @param  realized_covariances      Dataset of realized covariances. A matrix or something that can be coerced to a matrix. Note: the columns should exactly
+#' @param  realized_variances        Dataset of (stationary) realized volatilities. A matrix or object that can be coerced to a matrix.
+#' @param  realized_covariances      Dataset of (stationary) realized covariances. A matrix or object that can be coerced to a matrix. Note: the columns should exactly
 #' be (((ncol(realized_volatilities)^2)-ncol(realized_volatilities))/2)
 #' @param  fisher_transf             Logical: if TRUE the correlations are computed and Fisher transformed
 #' @param  log                       Default is TRUE, if the realized volatilities are already log transformed then put to FALSE
@@ -10,7 +10,9 @@
 #' @param  n_cores                   Nr of cores to use in parallel computing, default is all but one
 #' @return   Granger causality matrix and Lasso selections are printed to the console
 #' @export
-#' @examples \dontrun{ HDGC_HVAR_RV_RCoV_all(real_var, real_cov, fisher_transf=T, log=T,parallel = T) }
+#' @examples \dontrun{ HDGC_HVAR_RV_RCoV_all(real_var, real_cov, fisher_transf=T, log=TRUE ,parallel = TRUE) }
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+#' @references  Corsi, Fulvio. "A simple approximate long-memory model of realized volatility." Journal of Financial Econometrics 7.2 (2009): 174-196.
 HDGC_HVAR_RV_RCoV_all <- function(realized_variances,realized_covariances, fisher_transf=TRUE, log=TRUE, bound = 0.5 * nrow(realized_variances),
                                   parallel = FALSE, n_cores = NULL) {
 

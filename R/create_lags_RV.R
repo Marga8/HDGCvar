@@ -1,5 +1,6 @@
 #' @title Lags creation: Daily, Weekly, Monthly aggregation for Realized Volatilities
 #'
+#' @keywords internal
 #' @description Creates a matrix of order 3 containing Daily, Weekly, Monthly returns for Realized Volatilities.
 #' Can include or exclude original series, and trim the NAs in the start of the sample. It should be used for HVARs.
 #' @param y vector or matrix to lag

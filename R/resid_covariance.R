@@ -1,5 +1,6 @@
 #' @title Residuals Covariance Matrix
 #'
+#' @keywords internal
 #' @description Given an array of matrices, it calculates the residual covariance matrix between column i=1,...,K
 #' of the first matrix of the array against column(s) $i=1,...,K of 2,..,k>=2$ matrices of the same array.
 #' @param data_array the array containing the different matrices

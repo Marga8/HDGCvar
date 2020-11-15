@@ -1,16 +1,18 @@
-#' @title  Test Granger causality for Realized Volatilities in High Dimensional Stationary Heterogeneous VARs conditioning on Realized Correlations
+#' @title  Test Granger causality for Realized Volatilities in High Dimensional Heterogeneous VARs conditioning on Realized Correlations
 #'
 #' @param  GCpair     A named list with names GCto and GCfrom containing vectors of the relevant GC variables.
-#' @param realized_variances Dataset of realized volatilities. A matrix or something that can be coerced to a matrix. Note: the volatilities must not be in logs.
-#' @param realized_correlations Dataset of realized correlations. To compute realized correlations from realized variances and realized covariances use \code{\link{Realized_corr}}
+#' @param realized_variances Dataset of (stationary) realized volatilities. A matrix or object that can be coerced to a matrix. Note: the volatilities must not be in logs.
+#' @param realized_correlations Dataset of (stationary) realized correlations. To compute realized correlations from realized variances and realized covariances use \code{\link{Realized_corr}}
 #' @param  bound      lower bound on tuning parameter lambda
 #' @param  parallel   TRUE for parallel computing
 #' @param  n_cores    nr of cores to use in parallel computing, default is all but one
-#' @return            LM test statistics and p-values: asymptotic, with finite sample correction and asymptotic with heteroscedasticity correction and Lasso selections are printed to the console
+#' @return            LM Chi-square test statistics (asymptotic), LM F-stat with finite sample correction, LM Chi-square (asymptotic) with heteroscedasticity correction, all with their corresponding p-value.
+#' Lasso selections are also printed to the console.
 #' @export
 #' @importFrom parallel makeCluster clusterSetRNGStream clusterExport clusterEvalQ detectCores parSapply stopCluster parLapply
-#' @examples \dontrun{GCpair<-list("GCto"="X", "GCfrom"="Z")
-#' HDGC_HVAR_RVCOV(GCpair, real_var, real_corr,parallel = T)}
+#' @examples \dontrun{HDGC_HVAR_RVCOV(GCpair=list("GCto"="Var 1", "GCfrom"="Var 2"), real_var, real_corr)}
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+#' @references  Corsi, Fulvio. "A simple approximate long-memory model of realized volatility." Journal of Financial Econometrics 7.2 (2009): 174-196.
 HDGC_HVAR_RVCOV <- function(GCpair, realized_variances, realized_correlations, bound = 0.5 * nrow(realized_variances),
                             parallel = FALSE, n_cores = NULL) {
   p = 3 #impose Three lags (HVAR)
@@ -36,7 +38,7 @@ HDGC_HVAR_RVCOV <- function(GCpair, realized_variances, realized_correlations, b
     stop("No matching variable for GCto found.")
   }
   I <- length(y_index) #number of dep variables
-  y_I <- (Y[, y_index]) #dependent variable, corresponds to ycont1
+  y_I <- c(Y[, y_index]) #dependent variable, corresponds to ycont1
   x_index <- which(colnames(Y) %in% GCfrom) #index of Granger-causing variable
   if (is.null(x_index)) {
     stop("No matching variable for GCfrom found.")

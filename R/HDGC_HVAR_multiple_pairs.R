@@ -1,9 +1,9 @@
-#' @title Test multiple pairs Granger causality in High Dimensional Stationary HVARs
+#' @title Test multiple pairs Granger causality in High Dimensional HVARs
 #'
 #' @description A wrapper around \code{\link{HDGC_HVAR_multiple}}. If GCpairs is used,
 #' the function is the same as \code{\link{HDGC_HVAR_multiple}}. Alternatively, if a we want to test all combinations between
 #' variables in GCto and GCfrom, these can be given directly. See Example.
-#' @param  data       the data matrix or something that can be coerced to a matrix containing realized volatilities
+#' @param  data       the data matrix or something that can be coerced to a matrix containing (stationary) realized volatilities
 #' @param  GCpairs     it should contain a nested list. The outer list is all the pairs to be considered.
 #' The inner list contains the GCto and GCfrom vectors needed for \code{\link{HDGC_HVAR}}. See \code{ \link{HDGC_HVAR_multiple}}.
 #' @param  GCto       all combination variables Granger caused
@@ -14,8 +14,10 @@
 #' @param  n_cores    nr of cores to use in parallel computing, default is all but one
 #' @return            Granger causality matrix and Lasso selections are printed to the console
 #' @export
-#' @examples \dontrun{GCto = list(c("V1", "V2")); GCfrom = list(c("V3", "V4", "V5"))}
-#' \dontrun{HDGC_HVAR_multiple_pairs(data,GCto,GCfrom,p=2,d=2,parallel = F)}
+#' @examples \dontrun{GCto = list(c("Var 1", "Var 2")); GCfrom = list(c("Var 3", "Var 4", "Var 5"))}
+#' \dontrun{HDGC_HVAR_multiple_pairs(sample_RV,GCto,GCfrom, log=TRUE)}
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+#' @references  Corsi, Fulvio. "A simple approximate long-memory model of realized volatility." Journal of Financial Econometrics 7.2 (2009): 174-196.
 HDGC_HVAR_multiple_pairs <- function(data, GCpairs = NULL, GCto = NULL, GCfrom = NULL, log=TRUE,
                                      bound = 0.5 * nrow(data),
                                      parallel = FALSE, n_cores = NULL) {

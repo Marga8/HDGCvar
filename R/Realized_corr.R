@@ -7,6 +7,7 @@
 #' @return LM test statistics and p-values: asymptotic, with finite sample correction and asymptotic with heteroscedasticity correction and Lasso selections are printed to the console
 #' @export
 #' @examples \dontrun{Realized_corr(real_var, real_cov, fisher_transf=T)}
+#' @references Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
 Realized_corr<-function(realized_variances, realized_covariances,fisher_transf=T){
   Rcov10 = as.matrix(realized_covariances)
   var10= as.matrix(realized_variances)

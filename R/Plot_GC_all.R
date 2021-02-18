@@ -29,12 +29,15 @@ Plot_GC_all<-function(Comb,Stat_type="FS_cor", alpha=0.01, multip_corr=list(F,"b
   if(Stat_type=="FS_cor"){
     #build adjaciency matrix
     input<-as.matrix(Comb[["tests"]][,,2,2])}#p_values
+    input<-t(input)
   if(Stat_type=="Asymp"){
     #build adjaciency matrix
     input<-as.matrix(Comb[["tests"]][,,2,1])}#p_values
+    input<-t(input)
   if(Stat_type=="Asymp_Robust"){
     #build adjaciency matrix
     input<-as.matrix(Comb[["tests"]][,,2,3])}#p_values
+    input<-t(input)
   if(multip_corr[[1]]==F){
     input[input < alpha] <- 1 #put =1 values < alpha
     input[is.na(input)] <- 0 #put =0 the diagonal

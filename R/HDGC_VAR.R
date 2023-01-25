@@ -66,8 +66,8 @@ HDGC_VAR <- function(GCpair, data, p = 1, d = 0, bound = 0.5 * nrow(data),
   ZX_augm <- NULL
   if (d > 0) {
     X_augm <- X_all[, K * p + 1:(K * d)] #lags p+1 ..p+d of all variables, i.e all extra lags
-    Z_augm <- X_augm[, c(sapply(c(y_index, x_index), seq, by = K, length.out = d,
-                                simplify = "array"))]# lags p+1 ..p+d of Granger caused and Granger causing
+    Z_augm <- X_augm[, c(sapply(c(x_index), seq, by = K, length.out = d,
+                                simplify = "array"))]# lags p+1 ..p+d Granger causing
     #if (d + 1 > p) {
     # ZX_augm <- X_augm[, c(sapply(c(y_index, x_index), seq, by = K, length.out = d + 1 - p,
     #                             simplify = "array"))]

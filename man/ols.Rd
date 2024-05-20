@@ -12,7 +12,7 @@ ols(y, x)
 \item{x}{a vector or matrix of regressors}
 }
 \value{
-coefficients, fitted values, t statistics, p values, residuals
+coefficients, fitted values, standard errors, t statistics, p values, residuals
 }
 \description{
 Perform least squares of y on x. Returns a list with the coefficients, t statistics, p values and

@@ -1,7 +1,7 @@
 Package: HDGCvar
 Type: Package
 Title: Granger Causality Testing in High Dimensional Vector Autoregressive Models  
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
   person("Luca", "Margaritella", email = "luca.margaritella@gmail.com", role = c("aut","cre")),
   person("Stephan", "Smeekes", email="s.smeekes@maastrichtuniversity.nl", role="aut"))
@@ -18,7 +18,7 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/Marga8/HDGCvar
 BugReports: https://github.com/Marga8/HDGCvar/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.1
 Imports: 
     APFr,
     glmnet,
@@ -26,12 +26,12 @@ Imports:
     igraph,
     parallel,
     stats,
-    zoo,
-    HARModel
+    zoo
 Suggests: 
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    HARModel
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)

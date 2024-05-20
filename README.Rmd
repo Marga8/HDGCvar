@@ -137,8 +137,7 @@ If both (value,value) are given, the calculated threshold will find the closest 
 ## Data
 
 In `HDGCvar` the user can find three simulated datasets, namely: `sample_dataset_I0`, `sample_dataset_I1`, and `sample_RV`. For details on `sample_dataset_I0`, `sample_dataset_I1` look at the next section. In a nutshell, a stationary VAR(1) in first-differences, with 30 variables for 200 observations, is simulated in `sample_dataset_I0` and it is then reverted into a levels VAR(2) taking the inverse-differences in `sample_dataset_I1`.
-`sample_RV` contains 30 Realized Volatility time series of sample T=200 obtined by simulating 30 random instances from a
- Heterogeneous Autoregressive (HAR) model with daily, weekly and monthly lags. The simulations are obtained using the "HARSimulate" function from the package "HARModel". The value for the constant and the daily, weekly and monthly lags coefficients are respectively 0.01, 0.36 ,0.28 , 0.28 and the standard deviation of the error term is 0.001.
+`sample_RV` contains 30 Realized Volatility time series of sample T=200 obtained by simulating 30 random instances from a Heterogeneous Autoregressive (HAR) model with daily, weekly and monthly lags. The simulations are obtained using the `HARSimulate` function from the package `HARModel`. The value for the constant and the daily, weekly and monthly lags coefficients are respectively 0.01, 0.36 ,0.28 , 0.28 and the standard deviation of the error term is 0.001.
 
 
 ## Examples
@@ -286,7 +285,7 @@ HDGC_VAR(GCpair=interest_variables, data=dataset, p = 3, d = 2, bound = 0.5 * nr
 * Belloni, A., Chernozhukov, V., Hansen, C., "Inference on treatment effects after selection among high-dimensional controls." The Review of Economic Studies 81.2 (2014): 608-650.
 * Corsi, Fulvio. "A simple approximate long-memory model of realized volatility." Journal of Financial Econometrics 7.2 (2009): 174-196.
 * Granger, Clive WJ. "Investigating causal relations by econometric models and cross-spectral methods." Econometrica: journal of the Econometric Society (1969): 424-438.
-* Hecq, A., Margaritella, L., Smeekes, S., "Inference in Non Stationary High Dimensional VARs" (2020, check the latest version at https://sites.google.com/view/luca-margaritella )
-* Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." arXiv preprint arXiv:1902.10991 (2019).
+* Hecq, A., Margaritella, L., Smeekes, S., "Inference in Non Stationary High Dimensional VARs"  arXiv preprint arXiv:1902.10991 (2019).
+* Hecq, A., Margaritella, L., Smeekes, S., "Granger Causality Testing in High-Dimensional VARs: a Post-Double-Selection Procedure." Journal of Financial Econometrics 21.3 (2023): 915-958.
 * Newman, Mark EJ, and Michelle Girvan. "Finding and evaluating community structure in networks." Physical review E 69.2 (2004): 026113.
 * Quatto, Piero, et al. "Brain networks construction using Bayes FDR and average power function." Statistical Methods in Medical Research 29.3 (2020): 866-878.
